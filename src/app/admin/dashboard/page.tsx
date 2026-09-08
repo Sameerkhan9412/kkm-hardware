@@ -508,7 +508,7 @@ export default function AdminDashboard() {
               Control Center
             </span>
           </div>
-          <h1 style={{ fontSize: "2.2rem", color: "var(--white)", marginTop: "8px", display: "flex", alignItems: "center", gap: "10px" }}>
+          <h1 style={{ fontSize: "2.2rem", color: "var(--text-heading)", marginTop: "8px", display: "flex", alignItems: "center", gap: "10px" }}>
             <ShieldCheck size={28} style={{ color: "var(--primary)" }} /> Admin Dashboard
           </h1>
         </div>
@@ -572,8 +572,8 @@ export default function AdminDashboard() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "40px", alignItems: "start" }}>
               
               {/* Add Product Form */}
-              <div className="glass" style={{ padding: "30px", background: "rgba(18, 25, 41, 0.5)" }}>
-                <h3 style={{ fontSize: "1.25rem", color: "var(--white)", marginBottom: "20px", display: "flex", alignItems: "center", gap: "8px" }}>
+              <div className="glass" style={{ padding: "30px", background: "var(--card-bg)" }}>
+                <h3 style={{ fontSize: "1.25rem", color: "var(--text-heading)", marginBottom: "20px", display: "flex", alignItems: "center", gap: "8px" }}>
                   <PlusCircle size={18} style={{ color: "var(--primary)" }} /> Add New Product
                 </h3>
 
@@ -643,8 +643,8 @@ export default function AdminDashboard() {
               </div>
 
               {/* Product List */}
-              <div className="glass" style={{ padding: "30px", background: "rgba(18, 25, 41, 0.4)" }}>
-                <h3 style={{ fontSize: "1.25rem", color: "var(--white)", marginBottom: "20px" }}>
+              <div className="glass" style={{ padding: "30px", background: "var(--card-bg)" }}>
+                <h3 style={{ fontSize: "1.25rem", color: "var(--text-heading)", marginBottom: "20px" }}>
                   Product List ({products.length})
                 </h3>
 
@@ -656,7 +656,7 @@ export default function AdminDashboard() {
                         alignItems: "center",
                         justifyContent: "space-between",
                         padding: "12px 16px",
-                        background: "rgba(255,255,255,0.02)",
+                        background: "rgba(0,0,0,0.02)",
                         border: "1px solid var(--card-border)",
                         borderRadius: "10px",
                         gap: "12px"
@@ -674,7 +674,7 @@ export default function AdminDashboard() {
                             />
                           </div>
                           <div>
-                            <h4 style={{ fontSize: "0.95rem", color: "var(--white)", fontWeight: 600, margin: 0 }}>
+                            <h4 style={{ fontSize: "0.95rem", color: "var(--text-heading)", fontWeight: 600, margin: 0 }}>
                               {prod.name}
                             </h4>
                             <span style={{ fontSize: "0.75rem", color: "var(--primary)" }}>
@@ -731,8 +731,8 @@ export default function AdminDashboard() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "40px", alignItems: "start" }}>
               
               {/* Add Category */}
-              <div className="glass" style={{ padding: "30px", background: "rgba(18, 25, 41, 0.5)" }}>
-                <h3 style={{ fontSize: "1.25rem", color: "var(--white)", marginBottom: "20px", display: "flex", alignItems: "center", gap: "8px" }}>
+              <div className="glass" style={{ padding: "30px", background: "var(--card-bg)" }}>
+                <h3 style={{ fontSize: "1.25rem", color: "var(--text-heading)", marginBottom: "20px", display: "flex", alignItems: "center", gap: "8px" }}>
                   <FolderPlus size={18} style={{ color: "var(--primary)" }} /> Add Category
                 </h3>
 
@@ -786,8 +786,8 @@ export default function AdminDashboard() {
               </div>
 
               {/* Category list */}
-              <div className="glass" style={{ padding: "30px", background: "rgba(18, 25, 41, 0.4)" }}>
-                <h3 style={{ fontSize: "1.25rem", color: "var(--white)", marginBottom: "20px" }}>
+              <div className="glass" style={{ padding: "30px", background: "var(--card-bg)" }}>
+                <h3 style={{ fontSize: "1.25rem", color: "var(--text-heading)", marginBottom: "20px" }}>
                   Category List ({categories.length})
                 </h3>
 
@@ -799,7 +799,7 @@ export default function AdminDashboard() {
                         alignItems: "center",
                         justifyContent: "space-between",
                         padding: "12px 16px",
-                        background: "rgba(255,255,255,0.02)",
+                        background: "rgba(0,0,0,0.02)",
                         border: "1px solid var(--card-border)",
                         borderRadius: "8px",
                         gap: "12px"
@@ -817,7 +817,7 @@ export default function AdminDashboard() {
                             />
                           </div>
                           <div>
-                            <h4 style={{ fontSize: "1rem", color: "var(--white)", fontWeight: 600, margin: 0 }}>
+                            <h4 style={{ fontSize: "1rem", color: "var(--text-heading)", fontWeight: 600, margin: 0 }}>
                               {c.name}
                             </h4>
                             <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
@@ -871,8 +871,8 @@ export default function AdminDashboard() {
 
           {/* Tab 3: Settings */}
           {activeTab === "settings" && (
-            <div className="glass" style={{ padding: "40px", background: "rgba(18, 25, 41, 0.5)" }}>
-              <h3 style={{ fontSize: "1.5rem", color: "var(--white)", marginBottom: "30px", display: "flex", alignItems: "center", gap: "10px" }}>
+            <div className="glass" style={{ padding: "40px", background: "var(--card-bg)" }}>
+              <h3 style={{ fontSize: "1.5rem", color: "var(--text-heading)", marginBottom: "30px", display: "flex", alignItems: "center", gap: "10px" }}>
                 <SettingsIcon size={22} style={{ color: "var(--primary)" }} /> General Contact Configuration
               </h3>
 
@@ -1052,7 +1052,7 @@ export default function AdminDashboard() {
           left: 0,
           width: "100%",
           height: "100%",
-          background: "rgba(5, 7, 10, 0.8)",
+          background: "rgba(15, 23, 42, 0.6)",
           backdropFilter: "blur(8px)",
           display: "flex",
           alignItems: "center",
@@ -1062,7 +1062,7 @@ export default function AdminDashboard() {
         }}>
           <div className="glass animate-fade-up" style={{
             padding: "30px",
-            background: "rgba(18, 25, 41, 0.95)",
+            background: "var(--bg)",
             maxWidth: "500px",
             width: "100%",
             border: "1px solid var(--primary)",
@@ -1083,7 +1083,7 @@ export default function AdminDashboard() {
               <X size={20} />
             </button>
             
-            <h3 style={{ fontSize: "1.4rem", color: "var(--white)", marginBottom: "20px" }}>Edit Product</h3>
+            <h3 style={{ fontSize: "1.4rem", color: "var(--text-heading)", marginBottom: "20px" }}>Edit Product</h3>
             
             <form onSubmit={handleEditProductSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
               <div className="form-group" style={{ margin: 0 }}>
@@ -1163,7 +1163,7 @@ export default function AdminDashboard() {
           left: 0,
           width: "100%",
           height: "100%",
-          background: "rgba(5, 7, 10, 0.8)",
+          background: "rgba(15, 23, 42, 0.6)",
           backdropFilter: "blur(8px)",
           display: "flex",
           alignItems: "center",
@@ -1173,7 +1173,7 @@ export default function AdminDashboard() {
         }}>
           <div className="glass animate-fade-up" style={{
             padding: "30px",
-            background: "rgba(18, 25, 41, 0.95)",
+            background: "var(--bg)",
             maxWidth: "500px",
             width: "100%",
             border: "1px solid var(--primary)",
@@ -1194,7 +1194,7 @@ export default function AdminDashboard() {
               <X size={20} />
             </button>
             
-            <h3 style={{ fontSize: "1.4rem", color: "var(--white)", marginBottom: "20px" }}>Edit Category</h3>
+            <h3 style={{ fontSize: "1.4rem", color: "var(--text-heading)", marginBottom: "20px" }}>Edit Category</h3>
             
             <form onSubmit={handleEditCategorySubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
               <div className="form-group" style={{ margin: 0 }}>

@@ -143,7 +143,7 @@ export default function CategoryPage() {
             href="/category/all"
             style={{
               padding: "14px 18px",
-              background: slug === "all" ? "var(--primary)" : "rgba(18, 25, 41, 0.4)",
+              background: slug === "all" ? "var(--primary)" : "var(--card-bg)",
               color: slug === "all" ? "var(--white)" : "var(--text)",
               border: slug === "all" ? "1px solid var(--primary)" : "1px solid var(--card-border)",
               borderRadius: "10px",
@@ -165,7 +165,7 @@ export default function CategoryPage() {
                 href={`/category/${cat.slug}`}
                 style={{
                   padding: "14px 18px",
-                  background: isActive ? "var(--primary)" : "rgba(18, 25, 41, 0.4)",
+                  background: isActive ? "var(--primary)" : "var(--card-bg)",
                   color: isActive ? "var(--white)" : "var(--text)",
                   border: isActive ? "1px solid var(--primary)" : "1px solid var(--card-border)",
                   borderRadius: "10px",
@@ -197,7 +197,7 @@ export default function CategoryPage() {
             
             <h1 style={{ 
               fontSize: "clamp(2rem, 4vw, 3rem)", 
-              color: "var(--white)", 
+              color: "var(--text-heading)", 
               margin: 0, 
               textTransform: "uppercase",
               fontFamily: "var(--font-title)"
@@ -228,7 +228,7 @@ export default function CategoryPage() {
             alignItems: "center",
             gap: "16px",
             marginBottom: "40px",
-            background: "rgba(18, 25, 41, 0.6)",
+            background: "var(--card-bg)",
             border: "1px solid var(--card-border)"
           }}>
             <Search size={18} style={{ color: "var(--text-muted)" }} />
@@ -264,7 +264,7 @@ export default function CategoryPage() {
                   overflow: "hidden",
                   display: "flex",
                   flexDirection: "column",
-                  background: "rgba(18, 25, 41, 0.4)",
+                  background: "var(--card-bg)",
                   transition: "all 0.3s",
                   borderRadius: "12px"
                 }}>
@@ -298,7 +298,7 @@ export default function CategoryPage() {
 
                   {/* Content Box */}
                   <div style={{ padding: "20px", display: "flex", flexDirection: "column", flexGrow: 1, gap: "12px", textAlign: "center" }}>
-                    <h3 style={{ fontSize: "1.05rem", color: "var(--white)", fontWeight: 600, margin: 0 }}>
+                    <h3 style={{ fontSize: "1.05rem", color: "var(--text-heading)", fontWeight: 600, margin: 0 }}>
                       {prod.name}
                     </h3>
                     

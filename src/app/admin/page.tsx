@@ -64,9 +64,9 @@ export default function AdminLogin() {
         width: "100%",
         maxWidth: "400px",
         padding: "40px 32px",
-        background: "rgba(11, 16, 27, 0.8)",
+        background: "var(--card-bg)",
         border: "1px solid var(--card-border)",
-        boxShadow: "0 20px 40px rgba(0, 0, 0, 0.5)",
+        boxShadow: "0 20px 40px rgba(0, 0, 0, 0.06)",
         position: "relative",
         zIndex: 1
       }}>
@@ -86,7 +86,7 @@ export default function AdminLogin() {
           }}>
             <ShieldAlert size={28} />
           </div>
-          <h1 style={{ fontSize: "1.75rem", color: "var(--white)", fontWeight: 700, margin: 0 }}>
+          <h1 style={{ fontSize: "1.75rem", color: "var(--text-heading)", fontWeight: 700, margin: 0 }}>
             Admin Portal
           </h1>
           <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "6px" }}>

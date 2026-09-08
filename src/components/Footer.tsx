@@ -42,7 +42,7 @@ export default function Footer() {
   return (
     <footer id="contact" style={{
       background: "var(--bg-darker)",
-      borderTop: "1px solid rgba(0, 162, 232, 0.08)",
+      borderTop: "1px solid var(--card-border)",
       padding: "60px 24px 30px 24px",
       marginTop: "auto",
       position: "relative",
@@ -79,7 +79,7 @@ export default function Footer() {
             <circle cx="104" cy="16" r="7.5" fill="#00A2E8" />
             <line x1="15" y1="66" x2="200" y2="66" stroke="#94a3b8" strokeWidth="1" strokeOpacity="0.4" />
             <line x1="15" y1="78" x2="200" y2="78" stroke="#94a3b8" strokeWidth="1" strokeOpacity="0.4" />
-            <text x="107" y="74" fontFamily="'Outfit', sans-serif" fontSize="7.5" fontWeight="600" fill="#f3f4f6" letterSpacing="1" textAnchor="middle">ARCHITECTURAL HARDWARE</text>
+            <text x="107" y="74" fontFamily="'Outfit', sans-serif" fontSize="7.5" fontWeight="600" fill="var(--text-heading)" letterSpacing="1" textAnchor="middle">ARCHITECTURAL HARDWARE</text>
           </svg>
           <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", lineHeight: "1.6" }}>
             Smart Design. Solid Performance.<br />
@@ -118,7 +118,7 @@ export default function Footer() {
 
         {/* Info Links Column */}
         <div>
-          <h4 style={{ color: "var(--white)", fontSize: "1.1rem", marginBottom: "20px", fontFamily: "var(--font-title)" }}>Quick Navigation</h4>
+          <h4 style={{ color: "var(--text-heading)", fontSize: "1.1rem", marginBottom: "20px", fontFamily: "var(--font-title)" }}>Quick Navigation</h4>
           <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "12px", padding: 0 }}>
             <li>
               <Link href="/" className="footer-link">Home Landing</Link>
@@ -141,7 +141,7 @@ export default function Footer() {
 
         {/* Contact Info Column */}
         <div>
-          <h4 style={{ color: "var(--white)", fontSize: "1.1rem", marginBottom: "20px", fontFamily: "var(--font-title)" }}>Contact Us</h4>
+          <h4 style={{ color: "var(--text-heading)", fontSize: "1.1rem", marginBottom: "20px", fontFamily: "var(--font-title)" }}>Contact Us</h4>
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             
             <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
@@ -180,7 +180,7 @@ export default function Footer() {
       <div style={{
         maxWidth: "1200px",
         margin: "0 auto",
-        borderTop: "1px solid rgba(255, 255, 255, 0.05)",
+        borderTop: "1px solid var(--card-border)",
         paddingTop: "24px",
         display: "flex",
         flexWrap: "wrap",
@@ -200,11 +200,11 @@ export default function Footer() {
           width: 36px;
           height: 36px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.05);
+          background: rgba(0, 0, 0, 0.03);
+          border: 1px solid rgba(0, 0, 0, 0.05);
           display: flex;
           alignItems: center;
-          justify-content: center;
+          justifyContent: center;
           color: var(--text-muted);
           transition: all 0.3s;
         }

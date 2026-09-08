@@ -138,7 +138,7 @@ export default function HeroSlider() {
                 left: 0,
                 width: "100%",
                 height: "100%",
-                background: "linear-gradient(to right, rgba(9, 13, 22, 0.9) 0%, rgba(9, 13, 22, 0.7) 40%, rgba(9, 13, 22, 0.1) 100%), linear-gradient(to bottom, transparent 60%, var(--bg) 100%)",
+                background: "linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.1) 100%), linear-gradient(to bottom, transparent 60%, var(--bg) 100%)",
                 zIndex: 2,
                 pointerEvents: "none"
               }} />
@@ -211,7 +211,7 @@ export default function HeroSlider() {
                       fontSize: "clamp(2.3rem, 5vw, 4rem)",
                       lineHeight: 1.15,
                       marginBottom: "20px",
-                      color: "var(--white)",
+                      color: "var(--text-heading)",
                       fontFamily: "var(--font-title)",
                       fontWeight: 800
                     }}>
@@ -221,7 +221,7 @@ export default function HeroSlider() {
                     {/* Description */}
                     <p style={{
                       fontSize: "clamp(0.95rem, 1.5vw, 1.15rem)",
-                      color: "var(--text-muted)",
+                      color: "var(--text)",
                       lineHeight: "1.6",
                       marginBottom: "36px"
                     }}>
@@ -273,9 +273,9 @@ export default function HeroSlider() {
           width: "48px",
           height: "48px",
           borderRadius: "50%",
-          background: "rgba(9, 13, 22, 0.4)",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-          color: "var(--white)",
+          background: "rgba(255, 255, 255, 0.65)",
+          border: "1px solid var(--card-border)",
+          color: "var(--text-heading)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -300,9 +300,9 @@ export default function HeroSlider() {
           width: "48px",
           height: "48px",
           borderRadius: "50%",
-          background: "rgba(9, 13, 22, 0.4)",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-          color: "var(--white)",
+          background: "rgba(255, 255, 255, 0.65)",
+          border: "1px solid var(--card-border)",
+          color: "var(--text-heading)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -333,7 +333,7 @@ export default function HeroSlider() {
               width: idx === current ? "24px" : "8px",
               height: "8px",
               borderRadius: "4px",
-              background: idx === current ? "var(--primary)" : "rgba(255, 255, 255, 0.2)",
+              background: idx === current ? "var(--primary)" : "rgba(0, 0, 0, 0.15)",
               border: "none",
               cursor: "pointer",
               transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)"
@@ -349,6 +349,7 @@ export default function HeroSlider() {
           border-color: var(--primary) !important;
           box-shadow: 0 0 15px rgba(0, 162, 232, 0.4);
           transform: translateY(-50%) scale(1.05);
+          color: var(--white) !important;
         }
       `}</style>
     </div>

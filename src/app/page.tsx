@@ -109,8 +109,8 @@ export default function Home() {
               display: "flex",
               flexDirection: "column",
               gap: "8px",
-              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.4)",
-              background: "rgba(11, 16, 27, 0.85)",
+              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.06)",
+              background: "var(--card-bg)",
             }}>
               <span style={{ fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "1.5px", color: "var(--text-muted)" }}>
                 {stat.label}
@@ -141,7 +141,7 @@ export default function Home() {
             <span style={{ fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "2.0px", color: "var(--primary)", fontWeight: 700 }}>
               OUR LEGACY
             </span>
-            <h2 style={{ fontSize: "2.8rem", color: "var(--white)", marginTop: "8px" }}>
+            <h2 style={{ fontSize: "2.8rem", color: "var(--text-heading)", marginTop: "8px" }}>
               Smart Design. <span className="text-gradient">Solid Performance.</span>
             </h2>
           </div>
@@ -158,8 +158,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="glass" style={{ padding: "40px", background: "rgba(18, 25, 41, 0.45)", border: "1px solid rgba(255, 255, 255, 0.05)" }}>
-          <h3 style={{ fontSize: "1.5rem", color: "var(--white)", marginBottom: "24px", display: "flex", alignItems: "center", gap: "10px" }}>
+        <div className="glass" style={{ padding: "40px", background: "var(--card-bg)", border: "1px solid var(--card-border)" }}>
+          <h3 style={{ fontSize: "1.5rem", color: "var(--text-heading)", marginBottom: "24px", display: "flex", alignItems: "center", gap: "10px" }}>
             <Award style={{ color: "var(--accent)" }} /> KMI Catalogue Includes:
           </h3>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
@@ -188,14 +188,14 @@ export default function Home() {
       <section id="categories" style={{
         padding: "100px 24px",
         background: "var(--bg-darker)",
-        borderTop: "1px solid rgba(255, 255, 255, 0.03)"
+        borderTop: "1px solid var(--card-border)"
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "60px" }}>
             <span style={{ fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "2.0px", color: "var(--primary)", fontWeight: 700 }}>
               OUR PRODUCT CATAGORIES
             </span>
-            <h2 style={{ fontSize: "2.8rem", color: "var(--white)", marginTop: "8px" }}>
+            <h2 style={{ fontSize: "2.8rem", color: "var(--text-heading)", marginTop: "8px" }}>
               Browse by <span className="text-gradient">Collections</span>
             </h2>
             <p style={{ color: "var(--text-muted)", marginTop: "12px", maxWidth: "600px", marginLeft: "auto", marginRight: "auto" }}>
@@ -219,7 +219,7 @@ export default function Home() {
                   cursor: "pointer",
                   height: "280px",
                   overflow: "hidden",
-                  background: "rgba(18, 25, 41, 0.5)",
+                  background: "var(--card-bg)",
                 }}
               >
                 {/* Category Image Cover */}
@@ -229,7 +229,7 @@ export default function Home() {
                   position: "relative",
                   background: "var(--bg-darker)",
                   overflow: "hidden",
-                  borderBottom: "1px solid rgba(255, 255, 255, 0.05)"
+                  borderBottom: "1px solid var(--card-border)"
                 }}>
                   {cat.image ? (
                     <img 
@@ -281,7 +281,7 @@ export default function Home() {
                   gap: "8px"
                 }}>
                   <div>
-                    <h3 style={{ fontSize: "1.1rem", color: "var(--white)", fontWeight: 600, margin: 0, textTransform: "uppercase" }}>{cat.name}</h3>
+                    <h3 style={{ fontSize: "1.1rem", color: "var(--text-heading)", fontWeight: 600, margin: 0, textTransform: "uppercase" }}>{cat.name}</h3>
                     <p style={{ color: "var(--text-muted)", fontSize: "0.8rem", marginTop: "2px" }}>Browse collection</p>
                   </div>
                   <div style={{
@@ -320,7 +320,7 @@ export default function Home() {
             <span style={{ fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "2.0px", color: "var(--primary)", fontWeight: 700 }}>
               FEATURED DESIGNS
             </span>
-            <h2 style={{ fontSize: "2.8rem", color: "var(--white)", marginTop: "8px" }}>
+            <h2 style={{ fontSize: "2.8rem", color: "var(--text-heading)", marginTop: "8px" }}>
               Signature <span className="text-gradient">Products</span>
             </h2>
           </div>
@@ -344,7 +344,7 @@ export default function Home() {
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
-                background: "rgba(18, 25, 41, 0.4)",
+                background: "var(--card-bg)",
                 transition: "all 0.3s"
               }}>
                 {/* Product Image Box */}
@@ -396,7 +396,7 @@ export default function Home() {
 
                 {/* Content Box */}
                 <div style={{ padding: "20px", display: "flex", flexDirection: "column", flexGrow: 1, gap: "16px" }}>
-                  <h3 style={{ fontSize: "1.1rem", color: "var(--white)", fontWeight: 600, margin: 0 }}>
+                  <h3 style={{ fontSize: "1.1rem", color: "var(--text-heading)", fontWeight: 600, margin: 0 }}>
                     {prod.name}
                   </h3>
                   
@@ -436,8 +436,8 @@ export default function Home() {
       <section style={{
         padding: "80px 24px",
         background: "linear-gradient(to right, rgba(0, 162, 232, 0.03) 0%, rgba(212, 175, 55, 0.02) 100%)",
-        borderTop: "1px solid rgba(255, 255, 255, 0.03)",
-        borderBottom: "1px solid rgba(255, 255, 255, 0.03)"
+        borderTop: "1px solid var(--card-border)",
+        borderBottom: "1px solid var(--card-border)"
       }}>
         <div style={{
           maxWidth: "1200px",
@@ -454,7 +454,7 @@ export default function Home() {
             <div key={idx} style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
               <div style={{ flexShrink: 0 }}>{item.icon}</div>
               <div>
-                <h4 style={{ color: "var(--white)", fontSize: "1.2rem", marginBottom: "8px", fontWeight: 600 }}>{item.title}</h4>
+                <h4 style={{ color: "var(--text-heading)", fontSize: "1.2rem", marginBottom: "8px", fontWeight: 600 }}>{item.title}</h4>
                 <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: "1.5" }}>{item.desc}</p>
               </div>
             </div>
@@ -465,8 +465,8 @@ export default function Home() {
       {/* Embed local styling for page interactions */}
       <style jsx global>{`
         .badge {
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.06);
+          background: rgba(0, 0, 0, 0.03);
+          border: 1px solid rgba(0, 0, 0, 0.05);
           padding: 6px 14px;
           border-radius: 9999px;
           font-size: 0.85rem;

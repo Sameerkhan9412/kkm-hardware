@@ -67,8 +67,8 @@ export default function Navbar() {
       zIndex: 1000,
       borderRadius: "9999px",
       padding: "8px 24px",
-      border: "1px solid rgba(255, 255, 255, 0.08)",
-      background: "rgba(9, 13, 22, 0.75)",
+      border: "1px solid var(--card-border)",
+      background: "var(--card-bg)",
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         {/* Brand Logo */}
@@ -85,7 +85,7 @@ export default function Navbar() {
             <line x1="15" y1="66" x2="200" y2="66" stroke="#94a3b8" strokeWidth="1" strokeOpacity="0.4" />
             <line x1="15" y1="78" x2="200" y2="78" stroke="#94a3b8" strokeWidth="1" strokeOpacity="0.4" />
             {/* Subtext */}
-            <text x="107" y="74" fontFamily="'Outfit', sans-serif" fontSize="7.5" fontWeight="600" fill="#f3f4f6" letterSpacing="1" textAnchor="middle">ARCHITECTURAL HARDWARE</text>
+            <text x="107" y="74" fontFamily="'Outfit', sans-serif" fontSize="7.5" fontWeight="600" fill="var(--text-heading)" letterSpacing="1" textAnchor="middle">ARCHITECTURAL HARDWARE</text>
           </svg>
         </Link>
 
@@ -143,8 +143,8 @@ export default function Navbar() {
                   maxHeight: "350px",
                   overflowY: "auto",
                   padding: "8px",
-                  background: "rgba(9, 13, 22, 0.95)",
-                  boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)",
+                  background: "var(--bg)",
+                  boxShadow: "0 10px 25px rgba(0, 0, 0, 0.08)",
                   borderRadius: "12px",
                   display: "flex",
                   flexDirection: "column",
@@ -241,13 +241,13 @@ export default function Navbar() {
           left: "0",
           width: "100%",
           padding: "20px",
-          background: "rgba(9, 13, 22, 0.95)",
+          background: "var(--bg)",
           borderRadius: "16px",
           display: "flex",
           flexDirection: "column",
           gap: "16px",
           border: "1px solid var(--card-border)",
-          boxShadow: "0 15px 30px rgba(0,0,0,0.5)",
+          boxShadow: "0 15px 30px rgba(0, 0, 0, 0.08)",
           zIndex: 999
         }}>
           <Link href="/" className="mobile-item" onClick={() => setIsOpen(false)}>Home</Link>
