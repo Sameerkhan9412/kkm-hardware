@@ -210,8 +210,8 @@ export default function Home() {
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "24px"
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gap: "28px"
           }}>
             {categories.map((cat) => (
               <Link 
@@ -222,15 +222,16 @@ export default function Home() {
                   display: "flex",
                   flexDirection: "column",
                   cursor: "pointer",
-                  height: "280px",
+                  height: "340px",
                   overflow: "hidden",
                   background: "var(--card-bg)",
+                  borderRadius: "16px",
                 }}
               >
                 {/* Category Image */}
                 <div style={{
                   width: "100%",
-                  height: "170px",
+                  height: "220px",
                   position: "relative",
                   background: "var(--bg-darker)",
                   overflow: "hidden",
@@ -241,7 +242,7 @@ export default function Home() {
                       src={cat.image} 
                       alt={cat.name} 
                       aspectRatio="auto"
-                      padding="16px"
+                      padding="10px"
                       containerStyle={{ width: "100%", height: "100%" }}
                       className="cat-card-img"
                     />
@@ -280,8 +281,8 @@ export default function Home() {
                   gap: "8px"
                 }}>
                   <div>
-                    <h3 style={{ fontSize: "1.1rem", color: "var(--text-heading)", fontWeight: 600, margin: 0, textTransform: "uppercase" }}>{cat.name}</h3>
-                    <p style={{ color: "var(--text-muted)", fontSize: "0.8rem", marginTop: "2px" }}>Browse collection</p>
+                    <h3 style={{ fontSize: "1.2rem", color: "var(--text-heading)", fontWeight: 700, margin: 0, textTransform: "uppercase" }}>{cat.name}</h3>
+                    <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginTop: "4px" }}>Browse collection</p>
                   </div>
                   <div style={{
                     alignSelf: "flex-end",
@@ -335,8 +336,8 @@ export default function Home() {
         ) : featuredProducts.length > 0 ? (
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: "30px"
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gap: "32px"
           }}>
             {featuredProducts.map((prod) => (
               <div key={prod._id} className="product-card glass" style={{
@@ -344,7 +345,8 @@ export default function Home() {
                 display: "flex",
                 flexDirection: "column",
                 background: "var(--card-bg)",
-                transition: "all 0.3s"
+                transition: "all 0.3s",
+                borderRadius: "16px",
               }}>
                 {/* Product Image Box with Shimmer and Full Image */}
                 <div style={{
@@ -356,24 +358,28 @@ export default function Home() {
                   <ShimmerImage
                     src={prod.image || "/default-lock.png"}
                     alt={prod.name}
-                    aspectRatio="5 / 4"
-                    padding="18px"
+                    aspectRatio="4 / 3"
+                    padding="10px"
                     className="prod-img"
                   />
+                  {/* Category Name Displayed on TOP of the image */}
                   {prod.category && (
                     <span style={{
                       position: "absolute",
-                      bottom: "12px",
-                      left: "12px",
-                      fontSize: "0.7rem",
-                      background: "rgba(0, 162, 232, 0.15)",
+                      top: "14px",
+                      left: "14px",
+                      fontSize: "0.72rem",
+                      background: "rgba(255, 255, 255, 0.92)",
+                      backdropFilter: "blur(6px)",
                       color: "var(--primary)",
                       border: "1px solid rgba(0, 162, 232, 0.25)",
-                      padding: "4px 10px",
+                      padding: "5px 12px",
                       borderRadius: "9999px",
-                      fontWeight: 600,
+                      fontWeight: 700,
                       textTransform: "uppercase",
-                      letterSpacing: "0.5px"
+                      letterSpacing: "0.6px",
+                      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
+                      zIndex: 10
                     }}>
                       {prod.category.name}
                     </span>

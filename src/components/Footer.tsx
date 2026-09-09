@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Mail, Phone, MapPin, MessageSquare, Shield } from "lucide-react";
+import { Mail, Phone, MapPin, MessageSquare, Shield, Download } from "lucide-react";
 
 interface SettingsData {
   companyName: string;
@@ -116,6 +116,30 @@ export default function Footer() {
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
           </div>
+
+          {/* Download Brochure Button (Controlled by Admin) */}
+          <a 
+            href={settings.brochureLink ? settings.brochureLink : `https://wa.me/${cleanPhone(settings.whatsapp)}?text=Hello%20KMI,%20please%20send%20me%20the%20latest%20product%20catalogue%20brochure.`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              background: "rgba(212, 175, 55, 0.1)",
+              border: "1px solid rgba(212, 175, 55, 0.3)",
+              color: "var(--accent)",
+              padding: "8px 16px",
+              borderRadius: "8px",
+              fontSize: "0.85rem",
+              fontWeight: 600,
+              width: "fit-content",
+              marginTop: "8px",
+              textDecoration: "none"
+            }}
+          >
+            <Download size={15} /> Download Product Brochure
+          </a>
         </div>
 
         {/* Info Links Column */}
@@ -131,12 +155,16 @@ export default function Footer() {
             <li>
               <a href="#categories" className="footer-link">Product Showcase</a>
             </li>
-            {settings.brochureLink && (
-              <li>
-                <a href={settings.brochureLink} target="_blank" rel="noopener noreferrer" className="footer-link" style={{ color: "var(--accent)", fontWeight: 600 }}>Download Brochure</a>
-              </li>
-            )}
             <li>
+              <a 
+                href={settings.brochureLink ? settings.brochureLink : `https://wa.me/${cleanPhone(settings.whatsapp)}?text=Hello%20KMI,%20please%20send%20me%20the%20latest%20product%20catalogue%20brochure.`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="footer-link" 
+                style={{ color: "var(--accent)", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: "6px" }}
+              >
+                <Download size={14} /> Download E-Brochure (PDF)
+              </a>
             </li>
           </ul>
         </div>

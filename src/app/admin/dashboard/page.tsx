@@ -929,15 +929,37 @@ export default function AdminDashboard() {
 
                 {/* Brochure Link */}
                 <div className="form-group" style={{ margin: 0 }}>
-                  <label htmlFor="set-brochure">Catalog Brochure Google Drive / Web PDF Link</label>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
+                    <label htmlFor="set-brochure" style={{ margin: 0 }}>
+                      Catalog Brochure Link (Navbar & Footer)
+                    </label>
+                    {setBrochureLink && (
+                      <a
+                        href={setBrochureLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          fontSize: "0.8rem",
+                          color: "var(--primary)",
+                          textDecoration: "underline",
+                          fontWeight: 600,
+                        }}
+                      >
+                        ↗ Test Current Link
+                      </a>
+                    )}
+                  </div>
                   <input
                     type="url"
                     id="set-brochure"
                     className="form-control"
-                    placeholder="e.g. https://drive.google.com/file/d/.../view?usp=sharing"
+                    placeholder="e.g. https://drive.google.com/file/d/.../view?usp=sharing or PDF URL"
                     value={setBrochureLink}
                     onChange={(e) => setSetBrochureLink(e.target.value)}
                   />
+                  <small style={{ color: "var(--text-muted)", fontSize: "0.8rem", marginTop: "4px", display: "block" }}>
+                    Enter your Google Drive shareable link, Dropbox link, or direct PDF URL. This link is linked directly to the &quot;E-Brochure&quot; buttons in the navbar and footer.
+                  </small>
                 </div>
 
                 {/* Dynamic List inputs for Emails & Phones */}

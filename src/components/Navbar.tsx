@@ -185,24 +185,29 @@ export default function Navbar() {
             Contact
           </button>
 
-          {settings?.brochureLink && (
-            <a 
-              href={settings.brochureLink} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="nav-item"
-              style={{
-                color: "var(--accent)",
-                fontWeight: 600,
-                fontSize: "0.95rem",
-                display: "flex",
-                alignItems: "center",
-                gap: "4px"
-              }}
-            >
-              <Download size={14} /> Brochure
-            </a>
-          )}
+          {/* Brochure Link (Added/Controlled by Admin) */}
+          <a 
+            href={settings?.brochureLink ? settings.brochureLink : "https://wa.me/919927755449?text=Hello%20KMI,%20please%20send%20me%20the%20latest%20product%20catalogue%20brochure."} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="nav-item"
+            style={{
+              color: "var(--accent)",
+              fontWeight: 600,
+              fontSize: "0.92rem",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              background: "rgba(212, 175, 55, 0.08)",
+              border: "1px solid rgba(212, 175, 55, 0.25)",
+              padding: "6px 14px",
+              borderRadius: "9999px",
+              transition: "all 0.3s ease",
+            }}
+            title={settings?.brochureLink ? "Download Official Product Catalogue" : "Request Product Catalogue"}
+          >
+            <Download size={14} style={{ color: "var(--accent)" }} /> E-Brochure
+          </a>
 
         </div>
 
@@ -262,18 +267,27 @@ export default function Navbar() {
 
           <button onClick={() => handleScroll("contact")} className="mobile-item" style={{ background: "none", border: "none", color: "var(--text)", textAlign: "left", fontSize: "1rem" }}>Contact</button>
           
-          {settings?.brochureLink && (
-            <a 
-              href={settings.brochureLink} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="mobile-item" 
-              onClick={() => setIsOpen(false)}
-              style={{ color: "var(--accent)", fontWeight: 600 }}
-            >
-              Download Brochure
-            </a>
-          )}
+          {/* Mobile Brochure Link */}
+          <a 
+            href={settings?.brochureLink ? settings.brochureLink : "https://wa.me/919927755449?text=Hello%20KMI,%20please%20send%20me%20the%20latest%20product%20catalogue%20brochure."} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="mobile-item" 
+            onClick={() => setIsOpen(false)}
+            style={{ 
+              color: "var(--accent)", 
+              fontWeight: 600,
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              background: "rgba(212, 175, 55, 0.08)",
+              padding: "10px 14px",
+              borderRadius: "8px",
+              border: "1px solid rgba(212, 175, 55, 0.2)"
+            }}
+          >
+            <Download size={16} /> Download Catalogue Brochure
+          </a>
           <a 
             href="https://wa.me/919927755449?text=Hello,%20I%20am%20interested%20in%20KMI%20Architectural%20Hardware%20products."
             target="_blank"

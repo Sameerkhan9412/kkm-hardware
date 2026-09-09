@@ -257,58 +257,83 @@ export default function CategoryPage() {
           ) : filteredProducts.length > 0 ? (
             <div style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "30px"
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "32px"
             }}>
-              {filteredProducts.map((prod) => (
-                <div key={prod._id} className="product-card glass" style={{
-                  overflow: "hidden",
-                  display: "flex",
-                  flexDirection: "column",
-                  background: "var(--card-bg)",
-                  transition: "all 0.3s",
-                  borderRadius: "12px"
-                }}>
-                  {/* Product Image Box with full image and shimmer loader */}
-                  <div style={{
-                    position: "relative",
-                    width: "100%",
-                    background: "var(--bg-darker)",
-                    overflow: "hidden"
+              {filteredProducts.map((prod) => {
+                const catName = prod.category?.name || category?.name;
+                return (
+                  <div key={prod._id} className="product-card glass" style={{
+                    overflow: "hidden",
+                    display: "flex",
+                    flexDirection: "column",
+                    background: "var(--card-bg)",
+                    transition: "all 0.3s",
+                    borderRadius: "16px"
                   }}>
-                    <ShimmerImage
-                      src={prod.image || "/default-lock.png"}
-                      alt={prod.name}
-                      aspectRatio="5 / 4"
-                      padding="20px"
-                      className="prod-img"
-                    />
-                  </div>
+                    {/* Product Image Box with full image and shimmer loader */}
+                    <div style={{
+                      position: "relative",
+                      width: "100%",
+                      background: "var(--bg-darker)",
+                      overflow: "hidden"
+                    }}>
+                      <ShimmerImage
+                        src={prod.image || "/default-lock.png"}
+                        alt={prod.name}
+                        aspectRatio="4 / 3"
+                        padding="10px"
+                        className="prod-img"
+                      />
+                      {/* Category Name Displayed on TOP of the image */}
+                      {catName && catName !== "All Products" && (
+                        <span style={{
+                          position: "absolute",
+                          top: "14px",
+                          left: "14px",
+                          fontSize: "0.72rem",
+                          background: "rgba(255, 255, 255, 0.92)",
+                          backdropFilter: "blur(6px)",
+                          color: "var(--primary)",
+                          border: "1px solid rgba(0, 162, 232, 0.25)",
+                          padding: "5px 12px",
+                          borderRadius: "9999px",
+                          fontWeight: 700,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.6px",
+                          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
+                          zIndex: 10
+                        }}>
+                          {catName}
+                        </span>
+                      )}
+                    </div>
 
-                  {/* Content Box */}
-                  <div style={{ padding: "20px", display: "flex", flexDirection: "column", flexGrow: 1, gap: "12px", textAlign: "center" }}>
-                    <h3 style={{ fontSize: "1.05rem", color: "var(--text-heading)", fontWeight: 600, margin: 0 }}>
-                      {prod.name}
-                    </h3>
-                    
-                    <a 
-                      href={getWhatsAppLink(prod.name)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary"
-                      style={{
-                        width: "100%",
-                        padding: "10px",
-                        fontSize: "0.85rem",
-                        borderRadius: "8px",
-                        marginTop: "auto"
-                      }}
-                    >
-                      <MessageSquare size={14} /> Send Enquiry
-                    </a>
+                    {/* Content Box */}
+                    <div style={{ padding: "24px", display: "flex", flexDirection: "column", flexGrow: 1, gap: "16px", textAlign: "center" }}>
+                      <h3 style={{ fontSize: "1.15rem", color: "var(--text-heading)", fontWeight: 600, margin: 0 }}>
+                        {prod.name}
+                      </h3>
+                      
+                      <a 
+                        href={getWhatsAppLink(prod.name)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-primary"
+                        style={{
+                          width: "100%",
+                          padding: "12px",
+                          fontSize: "0.9rem",
+                          borderRadius: "8px",
+                          marginTop: "auto"
+                        }}
+                      >
+                        <MessageSquare size={16} /> Send Enquiry
+                      </a>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <div style={{
