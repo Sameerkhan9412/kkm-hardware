@@ -8,6 +8,7 @@ export interface ISettings extends Document {
   address: string;
   whatsapp: string;
   brochureLink: string;
+  companyVideoUrl: string;
   updatedAt: Date;
 }
 
@@ -19,6 +20,7 @@ const SettingsSchema: Schema = new Schema({
   address: { type: String, default: "Talanagri Ramghat Road, Aligarh - 202001 (U.P) INDIA" },
   whatsapp: { type: String, default: "+919927755449" },
   brochureLink: { type: String, default: "" },
+  companyVideoUrl: { type: String, default: "" },
   updatedAt: { type: Date, default: Date.now },
 });
 

@@ -41,6 +41,7 @@ export async function PUT(request: NextRequest) {
     settings.address = payload.address !== undefined ? payload.address : settings.address;
     settings.whatsapp = payload.whatsapp !== undefined ? payload.whatsapp : settings.whatsapp;
     settings.brochureLink = payload.brochureLink !== undefined ? payload.brochureLink : settings.brochureLink;
+    settings.companyVideoUrl = payload.companyVideoUrl !== undefined ? payload.companyVideoUrl : settings.companyVideoUrl;
     
     if (Array.isArray(payload.emails)) {
       settings.emails = payload.emails.filter((e: string) => e.trim().length > 0);

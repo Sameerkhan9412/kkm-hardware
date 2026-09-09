@@ -45,6 +45,7 @@ interface SettingsData {
   address: string;
   whatsapp: string;
   brochureLink?: string;
+  companyVideoUrl?: string;
 }
 
 type TabType = "products" | "categories" | "settings";
@@ -97,6 +98,7 @@ export default function AdminDashboard() {
   const [setAddress, setSetAddress] = useState("");
   const [setWhatsapp, setSetWhatsapp] = useState("");
   const [setBrochureLink, setSetBrochureLink] = useState("");
+  const [setCompanyVideoUrl, setSetCompanyVideoUrl] = useState("");
   const [newEmailInput, setNewEmailInput] = useState("");
   const [newPhoneInput, setNewPhoneInput] = useState("");
   const [settingsEmails, setSettingsEmails] = useState<string[]>([]);
@@ -126,6 +128,7 @@ export default function AdminDashboard() {
         setSetAddress(s.address || "");
         setSetWhatsapp(s.whatsapp || "");
         setSetBrochureLink(s.brochureLink || "");
+        setSetCompanyVideoUrl(s.companyVideoUrl || "");
         setSettingsEmails(s.emails || []);
         setSettingsPhones(s.phones || []);
       }
@@ -457,7 +460,8 @@ export default function AdminDashboard() {
           whatsapp: setWhatsapp,
           emails: settingsEmails,
           phones: settingsPhones,
-          brochureLink: setBrochureLink
+          brochureLink: setBrochureLink,
+          companyVideoUrl: setCompanyVideoUrl
         }),
       });
 
@@ -959,6 +963,41 @@ export default function AdminDashboard() {
                   />
                   <small style={{ color: "var(--text-muted)", fontSize: "0.8rem", marginTop: "4px", display: "block" }}>
                     Enter your Google Drive shareable link, Dropbox link, or direct PDF URL. This link is linked directly to the &quot;E-Brochure&quot; buttons in the navbar and footer.
+                  </small>
+                </div>
+
+                {/* YouTube Company Video (9:16) */}
+                <div className="form-group" style={{ margin: 0 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
+                    <label htmlFor="set-video" style={{ margin: 0 }}>
+                      Company Video (YouTube URL - 9:16 Shorts / Vertical Video)
+                    </label>
+                    {setCompanyVideoUrl && (
+                      <a
+                        href={setCompanyVideoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          fontSize: "0.8rem",
+                          color: "var(--primary)",
+                          textDecoration: "underline",
+                          fontWeight: 600,
+                        }}
+                      >
+                        ↗ Watch on YouTube
+                      </a>
+                    )}
+                  </div>
+                  <input
+                    type="url"
+                    id="set-video"
+                    className="form-control"
+                    placeholder="e.g. https://www.youtube.com/shorts/3jZpE_xxxx or https://youtu.be/xxxx"
+                    value={setCompanyVideoUrl}
+                    onChange={(e) => setSetCompanyVideoUrl(e.target.value)}
+                  />
+                  <small style={{ color: "var(--text-muted)", fontSize: "0.8rem", marginTop: "4px", display: "block" }}>
+                    Upload your 9:16 company video to YouTube (as a YouTube Short or regular video) and paste the link here. It will autoplay automatically on the homepage in 9:16 aspect ratio with muted audio by default.
                   </small>
                 </div>
 
