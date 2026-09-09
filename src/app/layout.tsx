@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: "KMI Architectural Hardware | Kumkum Metal Industries",
   description: "Manufacturer of premium door handles, mortise handles, locks, pull handles and high-quality door accessories. Established in 2011, Aligarh, India.",
   keywords: "KMI Hardware, Kumkum Metal, Mortise Handles, Door Locks, Pull Handles, Aligarh Hardware",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import ShimmerImage from "@/components/ShimmerImage";
 import { 
   ArrowLeft, 
   Search, 
@@ -268,30 +269,18 @@ export default function CategoryPage() {
                   transition: "all 0.3s",
                   borderRadius: "12px"
                 }}>
-                  {/* Product Image Box with elegant light background similar to Cent Hardware design */}
+                  {/* Product Image Box with full image and shimmer loader */}
                   <div style={{
                     position: "relative",
                     width: "100%",
-                    paddingBottom: "80%", // Aspect ratio 5:4
-                    background: "#f1f5f9", // Light background for photorealistic look
+                    background: "var(--bg-darker)",
                     overflow: "hidden"
                   }}>
-                    <img
+                    <ShimmerImage
                       src={prod.image || "/default-lock.png"}
                       alt={prod.name}
-                      onError={(e) => {
-                        e.currentTarget.src = "/default-lock.png";
-                      }}
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                        padding: "20px",
-                        transition: "transform 0.4s ease"
-                      }}
+                      aspectRatio="5 / 4"
+                      padding="20px"
                       className="prod-img"
                     />
                   </div>

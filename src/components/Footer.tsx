@@ -72,15 +72,17 @@ export default function Footer() {
       }}>
         {/* Brand Column */}
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          <svg viewBox="0 0 220 80" width="160" height="58" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 18 V58 M20 38 L42 18 M20 38 L42 58" stroke="#00A2E8" strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            <path d="M52 58 V18 L71 43 L90 18 V58" stroke="#00A2E8" strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            <path d="M104 30 V58" stroke="#00A2E8" strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            <circle cx="104" cy="16" r="7.5" fill="#00A2E8" />
-            <line x1="15" y1="66" x2="200" y2="66" stroke="#94a3b8" strokeWidth="1" strokeOpacity="0.4" />
-            <line x1="15" y1="78" x2="200" y2="78" stroke="#94a3b8" strokeWidth="1" strokeOpacity="0.4" />
-            <text x="107" y="74" fontFamily="'Outfit', sans-serif" fontSize="7.5" fontWeight="600" fill="var(--text-heading)" letterSpacing="1" textAnchor="middle">ARCHITECTURAL HARDWARE</text>
-          </svg>
+          <img 
+            src="/kmi-logo.png" 
+            alt="KMI Architectural Hardware" 
+            style={{ 
+              height: "56px", 
+              width: "auto", 
+              maxWidth: "200px", 
+              objectFit: "contain",
+              alignSelf: "flex-start" 
+            }} 
+          />
           <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", lineHeight: "1.6" }}>
             Smart Design. Solid Performance.<br />
             An ISO Certified Company specializing in premium door handles and locking mechanisms.

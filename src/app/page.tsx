@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import HeroSlider from "@/components/HeroSlider";
+import CompanyVideoSection from "@/components/CompanyVideoSection";
+import ShimmerImage from "@/components/ShimmerImage";
 import { 
   Award, 
   ShieldCheck, 
@@ -184,6 +186,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Company Video Showcase Section */}
+      <CompanyVideoSection />
+
       {/* Categories Grid Section */}
       <section id="categories" style={{
         padding: "100px 24px",
@@ -222,28 +227,22 @@ export default function Home() {
                   background: "var(--card-bg)",
                 }}
               >
-                {/* Category Image Cover */}
+                {/* Category Image */}
                 <div style={{
                   width: "100%",
-                  height: "160px",
+                  height: "170px",
                   position: "relative",
                   background: "var(--bg-darker)",
                   overflow: "hidden",
                   borderBottom: "1px solid var(--card-border)"
                 }}>
                   {cat.image ? (
-                    <img 
+                    <ShimmerImage 
                       src={cat.image} 
                       alt={cat.name} 
-                      onError={(e) => {
-                        e.currentTarget.src = "/default-lock.png";
-                      }}
-                      style={{ 
-                        width: "100%", 
-                        height: "100%", 
-                        objectFit: "cover",
-                        transition: "transform 0.5s ease"
-                      }}
+                      aspectRatio="auto"
+                      padding="16px"
+                      containerStyle={{ width: "100%", height: "100%" }}
                       className="cat-card-img"
                     />
                   ) : (
@@ -347,31 +346,18 @@ export default function Home() {
                 background: "var(--card-bg)",
                 transition: "all 0.3s"
               }}>
-                {/* Product Image Box */}
+                {/* Product Image Box with Shimmer and Full Image */}
                 <div style={{
                   position: "relative",
                   width: "100%",
-                  paddingBottom: "80%", // Aspect ratio 5:4
                   background: "var(--bg-darker)",
                   overflow: "hidden"
                 }}>
-                  {/* Base64 Image */}
-                  <img
+                  <ShimmerImage
                     src={prod.image || "/default-lock.png"}
                     alt={prod.name}
-                    onError={(e) => {
-                      e.currentTarget.src = "/default-lock.png";
-                    }}
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      padding: "16px",
-                      transition: "transform 0.4s ease"
-                    }}
+                    aspectRatio="5 / 4"
+                    padding="18px"
                     className="prod-img"
                   />
                   {prod.category && (

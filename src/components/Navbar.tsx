@@ -72,21 +72,17 @@ export default function Navbar() {
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         {/* Brand Logo */}
-        <Link href="/" style={{ display: "flex", alignItems: "center" }}>
-          <svg viewBox="0 0 220 80" width="130" height="48" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
-            {/* K */}
-            <path d="M20 18 V58 M20 38 L42 18 M20 38 L42 58" stroke="#00A2E8" strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            {/* M */}
-            <path d="M52 58 V18 L71 43 L90 18 V58" stroke="#00A2E8" strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            {/* I */}
-            <path d="M104 30 V58" stroke="#00A2E8" strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            <circle cx="104" cy="16" r="7.5" fill="#00A2E8" />
-            {/* Double lines */}
-            <line x1="15" y1="66" x2="200" y2="66" stroke="#94a3b8" strokeWidth="1" strokeOpacity="0.4" />
-            <line x1="15" y1="78" x2="200" y2="78" stroke="#94a3b8" strokeWidth="1" strokeOpacity="0.4" />
-            {/* Subtext */}
-            <text x="107" y="74" fontFamily="'Outfit', sans-serif" fontSize="7.5" fontWeight="600" fill="var(--text-heading)" letterSpacing="1" textAnchor="middle">ARCHITECTURAL HARDWARE</text>
-          </svg>
+        <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+          <img 
+            src="/kmi-logo.png" 
+            alt="KMI Architectural Hardware" 
+            style={{ 
+              height: "44px", 
+              width: "auto", 
+              objectFit: "contain",
+              display: "block" 
+            }} 
+          />
         </Link>
 
         {/* Desktop Links */}
