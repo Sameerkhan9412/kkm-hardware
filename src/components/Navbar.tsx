@@ -106,6 +106,17 @@ export default function Navbar() {
             About Us
           </button>
 
+          <button onClick={() => handleScroll("infrastructure")} className="nav-item" style={{
+            background: "none",
+            border: "none",
+            color: "var(--text)",
+            cursor: "pointer",
+            fontWeight: 500,
+            fontSize: "0.95rem"
+          }}>
+            Infrastructure
+          </button>
+
           {/* Categories Dropdown */}
           <div style={{ position: "relative" }}>
             <button 
@@ -253,6 +264,7 @@ export default function Navbar() {
         }}>
           <Link href="/" className="mobile-item" onClick={() => setIsOpen(false)}>Home</Link>
           <button onClick={() => handleScroll("about")} className="mobile-item" style={{ background: "none", border: "none", color: "var(--text)", textAlign: "left", fontSize: "1rem" }}>About Us</button>
+          <button onClick={() => handleScroll("infrastructure")} className="mobile-item" style={{ background: "none", border: "none", color: "var(--text)", textAlign: "left", fontSize: "1rem" }}>Infrastructure</button>
           
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "1px" }}>Categories</span>

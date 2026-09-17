@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import HeroSlider from "@/components/HeroSlider";
 import CompanyVideoSection from "@/components/CompanyVideoSection";
+import ManufacturingSection from "@/components/ManufacturingSection";
 import ShimmerImage from "@/components/ShimmerImage";
 import { 
   Award, 
@@ -188,6 +189,9 @@ export default function Home() {
 
       {/* Company Video Showcase Section */}
       <CompanyVideoSection />
+
+      {/* Manufacturing & Infrastructure Section */}
+      <ManufacturingSection />
 
       {/* Categories Grid Section */}
       <section id="categories" style={{
