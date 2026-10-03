@@ -357,64 +357,86 @@ export default function Home() {
                 borderRadius: "16px",
               }}>
                 {/* Product Image Box with Shimmer and Full Image */}
-                <div style={{
-                  position: "relative",
-                  width: "100%",
-                  background: "var(--bg-darker)",
-                  overflow: "hidden"
-                }}>
-                  <ShimmerImage
-                    src={prod.image || "/default-lock.png"}
-                    alt={prod.name}
-                    aspectRatio="4 / 3"
-                    padding="10px"
-                    className="prod-img"
-                  />
-                  {/* Category Name Displayed on TOP of the image */}
-                  {prod.category && (
-                    <span style={{
-                      position: "absolute",
-                      top: "14px",
-                      left: "14px",
-                      fontSize: "0.72rem",
-                      background: "rgba(255, 255, 255, 0.92)",
-                      backdropFilter: "blur(6px)",
-                      color: "var(--primary)",
-                      border: "1px solid rgba(0, 162, 232, 0.25)",
-                      padding: "5px 12px",
-                      borderRadius: "9999px",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.6px",
-                      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
-                      zIndex: 10
-                    }}>
-                      {prod.category.name}
-                    </span>
-                  )}
-                </div>
+                <Link href={`/product/${prod._id}`} style={{ display: "block", textDecoration: "none" }}>
+                  <div style={{
+                    position: "relative",
+                    width: "100%",
+                    background: "var(--bg-darker)",
+                    overflow: "hidden",
+                    cursor: "pointer"
+                  }}>
+                    <ShimmerImage
+                      src={prod.image || "/default-lock.png"}
+                      alt={prod.name}
+                      aspectRatio="4 / 3"
+                      padding="10px"
+                      className="prod-img"
+                    />
+                    {/* Category Name Displayed on TOP of the image */}
+                    {prod.category && (
+                      <span style={{
+                        position: "absolute",
+                        top: "14px",
+                        left: "14px",
+                        fontSize: "0.72rem",
+                        background: "rgba(255, 255, 255, 0.92)",
+                        backdropFilter: "blur(6px)",
+                        color: "var(--primary)",
+                        border: "1px solid rgba(0, 162, 232, 0.25)",
+                        padding: "5px 12px",
+                        borderRadius: "9999px",
+                        fontWeight: 700,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.6px",
+                        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
+                        zIndex: 10
+                      }}>
+                        {prod.category.name}
+                      </span>
+                    )}
+                  </div>
+                </Link>
 
                 {/* Content Box */}
-                <div style={{ padding: "20px", display: "flex", flexDirection: "column", flexGrow: 1, gap: "16px" }}>
-                  <h3 style={{ fontSize: "1.1rem", color: "var(--text-heading)", fontWeight: 600, margin: 0 }}>
-                    {prod.name}
-                  </h3>
+                <div style={{ padding: "20px", display: "flex", flexDirection: "column", flexGrow: 1, gap: "14px" }}>
+                  <Link href={`/product/${prod._id}`} style={{ textDecoration: "none" }}>
+                    <h3 style={{ fontSize: "1.1rem", color: "var(--text-heading)", fontWeight: 600, margin: 0 }}>
+                      {prod.name}
+                    </h3>
+                  </Link>
                   
-                  <a 
-                    href={getWhatsAppLink(prod.name)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary"
-                    style={{
-                      width: "100%",
-                      padding: "10px",
-                      fontSize: "0.85rem",
-                      borderRadius: "8px",
-                      marginTop: "auto"
-                    }}
-                  >
-                    <MessageSquare size={14} /> Send WhatsApp Enquiry
-                  </a>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginTop: "auto" }}>
+                    <Link
+                      href={`/product/${prod._id}`}
+                      className="btn btn-secondary"
+                      style={{
+                        padding: "10px",
+                        fontSize: "0.82rem",
+                        borderRadius: "8px",
+                        textAlign: "center",
+                        justifyContent: "center",
+                        border: "1px solid var(--card-border)"
+                      }}
+                    >
+                      View Details
+                    </Link>
+
+                    <a 
+                      href={getWhatsAppLink(prod.name)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      style={{
+                        padding: "10px",
+                        fontSize: "0.82rem",
+                        borderRadius: "8px",
+                        textAlign: "center",
+                        justifyContent: "center"
+                      }}
+                    >
+                      <MessageSquare size={13} /> WhatsApp
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
