@@ -90,7 +90,7 @@ const seedCategories = [
 
 const seedProducts = [
   // Steel Mortice Handles
-  { name: "KMI MH-1001 Antique", categorySlug: "steel-mortice-handles" },
+  { name: "KMI MH-1001 Antique", categorySlug: "steel-mortice-handles", image: "/images/banners/banner-mortise.jpg" },
   { name: "KMI MH-1002 Chrome", categorySlug: "steel-mortice-handles" },
   { name: "KMI MH-1003 Gold Satin", categorySlug: "steel-mortice-handles" },
   { name: "KMI MH-1005 Antique Brass", categorySlug: "steel-mortice-handles" },
@@ -100,12 +100,12 @@ const seedProducts = [
   { name: "KMI MH-2012 Antique Gold", categorySlug: "ss-mortice-handles" },
   { name: "KMI MH-2111 Round Rose Black", categorySlug: "ss-mortice-handles" },
   // Mortice locks
-  { name: "KMI ML-22 Latch Lock", categorySlug: "mortice-locks" },
+  { name: "KMI ML-22 Latch Lock", categorySlug: "mortice-locks", image: "/images/banners/banner-lockbody.jpg" },
   { name: "KMI ML-24 3-Round Bullet", categorySlug: "mortice-locks" },
   { name: "KMI Coin Cut Cylinder", categorySlug: "mortice-locks" },
   // Main Door Lock
+  { name: "KMI DL-Verti Bolt Lock", categorySlug: "main-door-lock", image: "/images/banners/banner-vertibolt.jpg" },
   { name: "KMI DL-Hexon Latch Lock", categorySlug: "main-door-lock" },
-  { name: "KMI DL-Verti Bolt Lock", categorySlug: "main-door-lock" },
   // Tribolt Lock
   { name: "KMI TL-Tribolt Latch Lock", categorySlug: "tribolt-lock" },
   { name: "KMI TL-Tribolt BSK Dual Key", categorySlug: "tribolt-lock" },
@@ -113,11 +113,12 @@ const seedProducts = [
   { name: "KMI PH-01 Curved", categorySlug: "steel-pull-handle" },
   { name: "KMI PH-02 Straight Classic", categorySlug: "steel-pull-handle" },
   // Stainless Steel Pull Handle
+  { name: "KMI PH-2221 6M Capsule Pulls Trio", categorySlug: "stainless-steel-pull-handle", image: "/images/banners/banner-pulls.jpg" },
   { name: "KMI PH-1001 6M Gold Matt", categorySlug: "stainless-steel-pull-handle" },
   { name: "KMI PH-1002 6M Matt Black", categorySlug: "stainless-steel-pull-handle" },
   { name: "KMI PH-2013 6M Textured SS", categorySlug: "stainless-steel-pull-handle" },
   // SS Pull Handle Lock Set
-  { name: "KMI PH-2011 Lockset Combo", categorySlug: "stainless-steel-pull-handle-lock-set" },
+  { name: "KMI PH-2011 6M Pull Handles Lock Set", categorySlug: "stainless-steel-pull-handle-lock-set", image: "/images/banners/banner-lockset.jpg" },
   { name: "KMI PH-2015 Premium Lockset", categorySlug: "stainless-steel-pull-handle-lock-set" }
 ];
 
@@ -152,15 +153,19 @@ async function seed() {
 
     // Seed Products
     console.log("Seeding products...");
-    const productsToInsert = seedProducts.map((p) => {
+    const baseTime = Date.now();
+    const productsToInsert = seedProducts.map((p, idx) => {
       const categoryId = categoryMap[p.categorySlug];
       if (!categoryId) {
         throw new Error(`Category slug '${p.categorySlug}' not found for product '${p.name}'`);
       }
+      // If product has real image, give it a later timestamp so it appears first in featured
+      const timestampOffset = p.image ? 100000 + idx * 1000 : idx * 10;
       return {
         name: p.name,
-        image: createSvgDataUri(p.name),
+        image: p.image || createSvgDataUri(p.name),
         category: categoryId,
+        createdAt: new Date(baseTime + timestampOffset),
       };
     });
 

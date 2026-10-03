@@ -70,18 +70,18 @@ const PILLARS: PillarItem[] = [
     ]
   },
   {
-    id: "logistics",
+    id: "tooling",
     step: "04",
-    title: "Shipping, Handling & Logistics",
-    badge: "NATIONWIDE DISPATCH",
+    title: "Precision Tooling & Machining",
+    badge: "COMPONENT DRILLING & MILLING",
     icon: <Truck size={20} style={{ color: "var(--accent)" }} />,
     image: "/images/infrastructure/logistics.jpg",
     description:
-      "We ensure our architectural hardware reaches your showrooms, distribution hubs, and construction projects safely, securely, and always on time. Backed by high-density organized warehousing and trusted logistics partners, every shipment is handled with meticulous care.",
+      "Our specialized metal machining facility operates dedicated heavy-duty drilling, boring, and milling machinery. Skilled machinists fabricate high-tolerance lock bodies, cylinder sleeves, and mechanical architectural fittings engineered for rugged longevity and dependable security.",
     highlights: [
-      "Shock-resistant protective bubble & foam packaging",
-      "Organized high-density barcode dispatch system",
-      "Seamless express dispatch across all Indian states"
+      "Heavy-duty Prakash precision drilling & boring stations",
+      "Specialized metallurgical tooling & component fabrication",
+      "Micro-tolerance alignment for smooth, effortless mechanical action"
     ]
   }
 ];

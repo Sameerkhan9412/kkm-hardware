@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import HeroSlider from "@/components/HeroSlider";
+import GateReveal from "@/components/GateReveal";
 import CompanyVideoSection from "@/components/CompanyVideoSection";
 import ManufacturingSection from "@/components/ManufacturingSection";
 import ShimmerImage from "@/components/ShimmerImage";
@@ -82,7 +83,10 @@ export default function Home() {
   };
 
   return (
-    <div style={{ paddingBottom: "40px" }}>
+    <div style={{ paddingBottom: "40px", position: "relative" }}>
+      {/* 3D Gate Opening on Scroll (Plus Point Locks style) */}
+      <GateReveal />
+
       {/* Hero Slider Section */}
       <HeroSlider />
 
