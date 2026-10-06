@@ -17,6 +17,40 @@ export default function Navbar() {
   const [settings, setSettings] = useState<any>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();
+  const [headerVisible, setHeaderVisible] = useState(pathname !== "/");
+
+  // Handle header visibility on homepage vs subpages
+  useEffect(() => {
+    if (pathname !== "/") {
+      setHeaderVisible(true);
+      return;
+    }
+
+    // On homepage, check initial scroll position
+    if (typeof window !== "undefined" && window.scrollY > 300) {
+      setHeaderVisible(true);
+    } else {
+      setHeaderVisible(false);
+    }
+
+    const handleShowHeader = () => setHeaderVisible(true);
+    const handleHideHeader = () => setHeaderVisible(false);
+    const handleScrollCheck = () => {
+      if (window.scrollY > 300) {
+        setHeaderVisible(true);
+      }
+    };
+
+    window.addEventListener("kmi-show-header", handleShowHeader);
+    window.addEventListener("kmi-hide-header", handleHideHeader);
+    window.addEventListener("scroll", handleScrollCheck, { passive: true });
+
+    return () => {
+      window.removeEventListener("kmi-show-header", handleShowHeader);
+      window.removeEventListener("kmi-hide-header", handleHideHeader);
+      window.removeEventListener("scroll", handleScrollCheck);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     fetch("/api/categories")
@@ -61,7 +95,10 @@ export default function Navbar() {
       position: "fixed",
       top: "16px",
       left: "50%",
-      transform: "translateX(-50%)",
+      transform: headerVisible ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(-140%)",
+      opacity: headerVisible ? 1 : 0,
+      pointerEvents: headerVisible ? "auto" : "none",
+      transition: "transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease",
       width: "90%",
       maxWidth: "1200px",
       zIndex: 1000,

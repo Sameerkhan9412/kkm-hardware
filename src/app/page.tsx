@@ -89,114 +89,6 @@ export default function Home() {
 
       {/* Hero Slider Section */}
       <HeroSlider />
-
-      {/* Stats Section */}
-      <section style={{
-        padding: "60px 24px",
-        background: "linear-gradient(to bottom, var(--bg-darker), var(--bg))",
-        position: "relative",
-        zIndex: 10
-      }}>
-        <div style={{
-          maxWidth: "1200px",
-          margin: "-100px auto 0 auto", // overlap into hero section
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-          gap: "24px"
-        }}>
-          {[
-            { label: "Established In", value: "2011", desc: "15+ Years of Trust" },
-            { label: "Design Range", value: "500+", desc: "Exquisite Handcrafts" },
-            { label: "Quality Standard", value: "ISO", desc: "Certified Products" },
-            { label: "Supply Chain", value: "Global", desc: "Direct Factory Shipping" }
-          ].map((stat, i) => (
-            <div key={i} className="glass" style={{
-              padding: "24px",
-              textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              gap: "8px",
-              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.06)",
-              background: "var(--card-bg)",
-            }}>
-              <span style={{ fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "1.5px", color: "var(--text-muted)" }}>
-                {stat.label}
-              </span>
-              <span className="text-gradient" style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-title)" }}>
-                {stat.value}
-              </span>
-              <span style={{ fontSize: "0.9rem", color: "var(--text)" }}>
-                {stat.desc}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" style={{
-        padding: "100px 24px",
-        maxWidth: "1200px",
-        margin: "0 auto",
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-        gap: "60px",
-        alignItems: "center"
-      }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-          <div>
-            <span style={{ fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "2.0px", color: "var(--primary)", fontWeight: 700 }}>
-              OUR LEGACY
-            </span>
-            <h2 style={{ fontSize: "2.8rem", color: "var(--text-heading)", marginTop: "8px" }}>
-              Smart Design. <span className="text-gradient">Solid Performance.</span>
-            </h2>
-          </div>
-          <p style={{ color: "var(--text-muted)", fontSize: "1.05rem", lineHeight: "1.7" }}>
-            Smart Fit is a synonym of quality. It is a well-known Indian manufacturer of premium hardware products. Established in 2011, it is one of the pioneers in the hardware industry. Headquartered in the UPSIDC Industrial State, Talanagri, Aligarh, Smart Fit hardware is known for its constant innovation and cutting-edge technology.
-          </p>
-          <p style={{ color: "var(--text-muted)", fontSize: "1.05rem", lineHeight: "1.7" }}>
-            The brand was the vision of a man with big dreams—Shri Krishan Kumar Gupta. Today, his sons have joined the organization with an eternal pursuit of excellence to develop it worldwide, serving architects, interior designers, and luxury homeowners alike.
-          </p>
-          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "12px" }}>
-            <span className="badge">✓ ISO 9001 Certified</span>
-            <span className="badge">✓ Made in India</span>
-            <span className="badge">✓ Premium Finish</span>
-          </div>
-        </div>
-
-        <div className="glass" style={{ padding: "40px", background: "var(--card-bg)", border: "1px solid var(--card-border)" }}>
-          <h3 style={{ fontSize: "1.5rem", color: "var(--text-heading)", marginBottom: "24px", display: "flex", alignItems: "center", gap: "10px" }}>
-            <Award style={{ color: "var(--accent)" }} /> KMI Catalogue Includes:
-          </h3>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
-            {[
-              "Door Control Series",
-              "Rose Handles",
-              "SS Mortise Handles",
-              "Euro Profile Cylinders",
-              "KY & CY Locks",
-              "Pull Handles",
-              "Main Door Locks",
-              "Tribolt Locks",
-              "Door Indicator Locks",
-              "Fittings Accessories"
-            ].map((item, idx) => (
-              <div key={idx} style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem" }}>
-                <CheckCircle size={14} style={{ color: "var(--primary)", flexShrink: 0 }} />
-                <span style={{ color: "var(--text)" }}>{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Company Video Showcase Section */}
-      <CompanyVideoSection />
-
-      {/* Manufacturing & Infrastructure Section */}
-      <ManufacturingSection />
-
       {/* Categories Grid Section */}
       <section id="categories" style={{
         padding: "100px 24px",
@@ -309,6 +201,112 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Stats Section */}
+      <section style={{
+        padding: "60px 24px",
+        background: "linear-gradient(to bottom, var(--bg-darker), var(--bg))",
+        position: "relative",
+        zIndex: 10
+      }}>
+        <div style={{
+          maxWidth: "1200px",
+          margin: "-100px auto 0 auto", // overlap into hero section
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: "24px"
+        }}>
+          {[
+            { label: "Established In", value: "2011", desc: "15+ Years of Trust" },
+            { label: "Design Range", value: "500+", desc: "Exquisite Handcrafts" },
+            { label: "Quality Standard", value: "ISO", desc: "Certified Products" },
+            { label: "Supply Chain", value: "Global", desc: "Direct Factory Shipping" }
+          ].map((stat, i) => (
+            <div key={i} className="glass" style={{
+              padding: "24px",
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              gap: "8px",
+              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.06)",
+              background: "var(--card-bg)",
+            }}>
+              <span style={{ fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "1.5px", color: "var(--text-muted)" }}>
+                {stat.label}
+              </span>
+              <span className="text-gradient" style={{ fontSize: "2.5rem", fontWeight: 800, fontFamily: "var(--font-title)" }}>
+                {stat.value}
+              </span>
+              <span style={{ fontSize: "0.9rem", color: "var(--text)" }}>
+                {stat.desc}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" style={{
+        padding: "100px 24px",
+        maxWidth: "1200px",
+        margin: "0 auto",
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+        gap: "60px",
+        alignItems: "center"
+      }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          <div>
+            <span style={{ fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "2.0px", color: "var(--primary)", fontWeight: 700 }}>
+              OUR LEGACY
+            </span>
+            <h2 style={{ fontSize: "2.8rem", color: "var(--text-heading)", marginTop: "8px" }}>
+              Smart Design. <span className="text-gradient">Solid Performance.</span>
+            </h2>
+          </div>
+          <p style={{ color: "var(--text-muted)", fontSize: "1.05rem", lineHeight: "1.7" }}>
+            Smart Fit is a synonym of quality. It is a well-known Indian manufacturer of premium hardware products. Established in 2011, it is one of the pioneers in the hardware industry. Headquartered in the UPSIDC Industrial State, Talanagri, Aligarh, Smart Fit hardware is known for its constant innovation and cutting-edge technology.
+          </p>
+          <p style={{ color: "var(--text-muted)", fontSize: "1.05rem", lineHeight: "1.7" }}>
+            The brand was the vision of a man with big dreams—Shri Krishan Kumar Gupta. Today, his sons have joined the organization with an eternal pursuit of excellence to develop it worldwide, serving architects, interior designers, and luxury homeowners alike.
+          </p>
+          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "12px" }}>
+            <span className="badge">✓ ISO 9001 Certified</span>
+            <span className="badge">✓ Made in India</span>
+            <span className="badge">✓ Premium Finish</span>
+          </div>
+        </div>
+
+        <div className="glass" style={{ padding: "40px", background: "var(--card-bg)", border: "1px solid var(--card-border)" }}>
+          <h3 style={{ fontSize: "1.5rem", color: "var(--text-heading)", marginBottom: "24px", display: "flex", alignItems: "center", gap: "10px" }}>
+            <Award style={{ color: "var(--accent)" }} /> KMI Catalogue Includes:
+          </h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+            {[
+              "Door Control Series",
+              "Rose Handles",
+              "SS Mortise Handles",
+              "Euro Profile Cylinders",
+              "KY & CY Locks",
+              "Pull Handles",
+              "Main Door Locks",
+              "Tribolt Locks",
+              "Door Indicator Locks",
+              "Fittings Accessories"
+            ].map((item, idx) => (
+              <div key={idx} style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem" }}>
+                <CheckCircle size={14} style={{ color: "var(--primary)", flexShrink: 0 }} />
+                <span style={{ color: "var(--text)" }}>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Company Video Showcase Section */}
+      <CompanyVideoSection />
+
+      {/* Manufacturing & Infrastructure Section */}
+      <ManufacturingSection />
 
       {/* Featured Products Section */}
       <section id="products" style={{

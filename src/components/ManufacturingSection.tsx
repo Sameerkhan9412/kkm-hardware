@@ -58,7 +58,7 @@ const PILLARS: PillarItem[] = [
     id: "quality",
     step: "03",
     title: "Rigorous Quality Assurance",
-    badge: "ZERO DEFECT PROMISE",
+    badge: "LASERS STAMPING",
     icon: <ShieldCheck size={20} style={{ color: "var(--primary)" }} />,
     image: "/images/infrastructure/quality.jpg",
     description:
