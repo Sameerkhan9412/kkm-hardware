@@ -310,7 +310,7 @@ export default function HeroSlider() {
                     textShadow: "0 4px 20px rgba(0, 0, 0, 0.6)"
                   }}
                 >
-                  {slide.title1} <span className="text-gradient">{slide.title2}</span>
+                  {slide.title1} <span className="text-white">{slide.title2}</span>
                 </h1>
 
                 {/* Description */}
