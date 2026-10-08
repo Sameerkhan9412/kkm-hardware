@@ -7,11 +7,9 @@ import {
   ChevronLeft, 
   ChevronRight, 
   Check, 
-  ShieldCheck, 
   Sparkles, 
-  Layers, 
   Award,
-  Lock
+  Layers
 } from "lucide-react";
 
 interface SlideItem {
@@ -113,7 +111,7 @@ export default function HeroSlider() {
     setCurrent(idx);
   };
 
-  // Setup auto scroll interval
+  // Setup auto-scroll interval (6 seconds)
   useEffect(() => {
     if (!isHovered) {
       timerRef.current = setInterval(nextSlide, 6000);
@@ -145,349 +143,305 @@ export default function HeroSlider() {
         alignItems: "center"
       }}
     >
-      {/* Background Ambience Ambient Glow */}
-      <div 
-        style={{
-          position: "absolute",
-          top: "30%",
-          left: "60%",
-          transform: "translate(-50%, -50%)",
-          width: "700px",
-          height: "700px",
-          borderRadius: "50%",
-          background: `radial-gradient(circle, ${slides[current].accentColor === '#00A2E8' ? 'rgba(0, 162, 232, 0.12)' : 'rgba(212, 175, 55, 0.12)'} 0%, transparent 70%)`,
-          filter: "blur(60px)",
-          pointerEvents: "none",
-          transition: "background 1s ease",
-          zIndex: 1
-        }}
-      />
+      {/* Background Slides with Full-Bleed Product Images */}
+      {slides.map((slide, idx) => {
+        const isActive = idx === current;
+        return (
+          <div
+            key={slide.id}
+            aria-hidden={!isActive}
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              opacity: isActive ? 1 : 0,
+              visibility: isActive ? "visible" : "hidden",
+              transition: "opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.2s",
+              zIndex: 1,
+              overflow: "hidden"
+            }}
+          >
+            {/* Full-Bleed Product Background Image with gentle Ken-Burns zoom */}
+            <img 
+              src={slide.image} 
+              alt={`${slide.badge} - ${slide.model}`}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center 45%",
+                transform: isActive ? "scale(1.05)" : "scale(1.15)",
+                transition: "transform 7s cubic-bezier(0.16, 1, 0.3, 1)",
+                filter: "brightness(0.92) contrast(1.08)"
+              }}
+            />
 
-      {/* Subtle Grid Lines Overlay */}
+            {/* Left-to-Right Vignette Gradient Overlay so text is perfectly readable */}
+            <div 
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(to right, rgba(9, 13, 22, 0.95) 0%, rgba(9, 13, 22, 0.85) 45%, rgba(9, 13, 22, 0.5) 75%, rgba(9, 13, 22, 0.25) 100%)",
+                zIndex: 2
+              }}
+            />
+
+            {/* Top and Bottom Fade Gradients */}
+            <div 
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(to bottom, rgba(9, 13, 22, 0.8) 0%, transparent 20%, transparent 75%, rgba(9, 13, 22, 0.98) 100%)",
+                zIndex: 3
+              }}
+            />
+
+            {/* Ambient Accent Radial Glow */}
+            <div 
+              style={{
+                position: "absolute",
+                bottom: "10%",
+                left: "5%",
+                width: "600px",
+                height: "600px",
+                background: `radial-gradient(circle, ${slide.accentColor === '#00A2E8' ? 'rgba(0, 162, 232, 0.22)' : 'rgba(212, 175, 55, 0.2)'} 0%, transparent 70%)`,
+                filter: "blur(80px)",
+                pointerEvents: "none",
+                zIndex: 4
+              }}
+            />
+          </div>
+        );
+      })}
+
+      {/* Subtle Texture Grid Overlay */}
       <div 
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: 
-            "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 1px, transparent 1px)",
           backgroundSize: "32px 32px",
           pointerEvents: "none",
-          zIndex: 2,
-          opacity: 0.7
+          zIndex: 5,
+          opacity: 0.6
         }}
       />
 
-      {/* Slides Content */}
-      <div style={{ width: "100%", height: "100%", position: "relative", zIndex: 5 }}>
-        {slides.map((slide, idx) => {
-          const isActive = idx === current;
-          return (
-            <div
-              key={slide.id}
-              style={{
-                position: isActive ? "relative" : "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                minHeight: "100vh",
-                opacity: isActive ? 1 : 0,
-                visibility: isActive ? "visible" : "hidden",
-                transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s",
-                display: "flex",
-                alignItems: "center",
-                padding: "120px 24px 80px 24px",
-              }}
-            >
+      {/* Foreground Content: Title, Badges, Specs, Buttons */}
+      <div 
+        style={{
+          position: "relative",
+          zIndex: 10,
+          width: "100%",
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "140px 24px 100px 24px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "40px"
+        }}
+      >
+        {/* Left Section: Text Content */}
+        <div style={{ maxWidth: "680px", width: "100%" }}>
+          {slides.map((slide, idx) => {
+            const isActive = idx === current;
+            if (!isActive) return null;
+            return (
               <div 
+                key={slide.id}
                 style={{
-                  maxWidth: "1280px",
-                  width: "100%",
-                  margin: "0 auto",
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-                  gap: "48px",
-                  alignItems: "center"
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  animation: "fadeInSlide 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards"
                 }}
               >
-                {/* Left Column: Product Information & Action Hooks */}
-                <div 
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    opacity: isActive ? 1 : 0,
-                    transform: isActive ? "translateY(0)" : "translateY(30px)",
-                    transition: "all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
-                    zIndex: 10
-                  }}
-                >
-                  {/* Badge & Model */}
-                  <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px", marginBottom: "18px" }}>
-                    <div 
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "8px",
-                        background: "rgba(0, 162, 232, 0.1)",
-                        border: "1px solid rgba(0, 162, 232, 0.25)",
-                        padding: "5px 14px",
-                        borderRadius: "9999px",
-                      }}
-                    >
-                      <Sparkles size={14} style={{ color: "var(--primary)" }} />
-                      <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "1.2px", fontWeight: 700, color: "var(--primary)" }}>
-                        {slide.badge}
-                      </span>
-                    </div>
-
-                    <span 
-                      style={{
-                        fontSize: "0.8rem",
-                        fontWeight: 600,
-                        color: "#d4af37",
-                        background: "rgba(212, 175, 55, 0.1)",
-                        border: "1px solid rgba(212, 175, 55, 0.25)",
-                        padding: "5px 12px",
-                        borderRadius: "9999px",
-                        letterSpacing: "0.5px"
-                      }}
-                    >
-                      {slide.model}
+                {/* Badges */}
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
+                  <div 
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      background: "rgba(0, 162, 232, 0.15)",
+                      backdropFilter: "blur(8px)",
+                      border: "1px solid rgba(0, 162, 232, 0.35)",
+                      padding: "6px 16px",
+                      borderRadius: "9999px",
+                    }}
+                  >
+                    <Sparkles size={14} style={{ color: "var(--primary)" }} />
+                    <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "1.4px", fontWeight: 700, color: "var(--primary)" }}>
+                      {slide.badge}
                     </span>
                   </div>
 
-                  {/* Headline */}
-                  <h1 
+                  <span 
                     style={{
-                      fontSize: "clamp(2.4rem, 5.2vw, 4.2rem)",
-                      lineHeight: 1.12,
-                      marginBottom: "18px",
-                      color: "var(--text-heading)",
-                      fontFamily: "var(--font-title)",
-                      fontWeight: 800,
-                      letterSpacing: "-0.02em"
+                      fontSize: "0.8rem",
+                      fontWeight: 600,
+                      color: "#d4af37",
+                      background: "rgba(212, 175, 55, 0.15)",
+                      backdropFilter: "blur(8px)",
+                      border: "1px solid rgba(212, 175, 55, 0.35)",
+                      padding: "6px 14px",
+                      borderRadius: "9999px",
+                      letterSpacing: "0.5px"
                     }}
                   >
-                    {slide.title1} <span className="text-gradient">{slide.title2}</span>
-                  </h1>
-
-                  {/* Description */}
-                  <p 
-                    style={{
-                      fontSize: "clamp(1rem, 1.4vw, 1.18rem)",
-                      color: "var(--text)",
-                      lineHeight: "1.65",
-                      marginBottom: "24px",
-                      maxWidth: "560px"
-                    }}
-                  >
-                    {slide.desc}
-                  </p>
-
-                  {/* Specification Pills */}
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "32px" }}>
-                    {slide.tags.map((tag, tIdx) => (
-                      <span 
-                        key={tIdx}
-                        style={{
-                          fontSize: "0.8rem",
-                          color: "var(--text-muted)",
-                          background: "var(--card-bg)",
-                          border: "1px solid var(--card-border)",
-                          padding: "5px 12px",
-                          borderRadius: "6px",
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "6px"
-                        }}
-                      >
-                        <Check size={12} style={{ color: "var(--primary)" }} /> {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
-                    <button 
-                      onClick={scrollToCategories} 
-                      className="btn btn-primary" 
-                      style={{ 
-                        fontSize: "0.95rem", 
-                        padding: "13px 30px",
-                        borderRadius: "9999px",
-                        boxShadow: "0 8px 24px rgba(0, 162, 232, 0.35)"
-                      }}
-                    >
-                      {slide.btnText} <ArrowRight size={16} />
-                    </button>
-                    
-                    <a 
-                      href={`https://wa.me/919927755449?text=${encodeURIComponent(slide.whatsappMsg)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-secondary" 
-                      style={{ 
-                        fontSize: "0.95rem", 
-                        padding: "13px 26px",
-                        borderRadius: "9999px",
-                        border: "1px solid var(--card-border)"
-                      }}
-                    >
-                      <MessageSquare size={16} /> WhatsApp Enquiry
-                    </a>
-                  </div>
+                    {slide.model}
+                  </span>
                 </div>
 
-                {/* Right Column: Hero Showcase of the Real Company Product Banner */}
-                <div 
+                {/* Headline */}
+                <h1 
                   style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    position: "relative",
-                    opacity: isActive ? 1 : 0,
-                    transform: isActive ? "scale(1)" : "scale(0.94)",
-                    transition: "all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s"
+                    fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
+                    lineHeight: 1.1,
+                    marginBottom: "20px",
+                    color: "#ffffff",
+                    fontFamily: "var(--font-title)",
+                    fontWeight: 800,
+                    letterSpacing: "-0.02em",
+                    textShadow: "0 4px 20px rgba(0, 0, 0, 0.6)"
                   }}
                 >
-                  {/* Decorative Frame Glow */}
-                  <div 
-                    style={{
-                      position: "absolute",
-                      inset: "-12px",
-                      borderRadius: "28px",
-                      background: `linear-gradient(135deg, ${slide.accentColor === '#00A2E8' ? 'rgba(0, 162, 232, 0.3)' : 'rgba(212, 175, 55, 0.3)'}, transparent 60%)`,
-                      filter: "blur(20px)",
-                      opacity: 0.6,
-                      pointerEvents: "none"
-                    }}
-                  />
+                  {slide.title1} <span className="text-gradient">{slide.title2}</span>
+                </h1>
 
-                  {/* Floating Product Showcase Card */}
-                  <div 
-                    className="glass product-banner-card"
-                    style={{
-                      position: "relative",
-                      width: "100%",
-                      maxWidth: "540px",
-                      borderRadius: "24px",
-                      overflow: "hidden",
-                      border: "1px solid var(--card-border)",
-                      background: "rgba(18, 25, 41, 0.65)",
-                      boxShadow: "0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 35px rgba(0, 162, 232, 0.12)",
-                      transition: "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease"
-                    }}
-                  >
-                    {/* Top Status Bar on Product Card */}
-                    <div 
+                {/* Description */}
+                <p 
+                  style={{
+                    fontSize: "clamp(1.05rem, 1.4vw, 1.22rem)",
+                    color: "rgba(255, 255, 255, 0.88)",
+                    lineHeight: "1.7",
+                    marginBottom: "28px",
+                    maxWidth: "600px",
+                    textShadow: "0 2px 10px rgba(0, 0, 0, 0.5)"
+                  }}
+                >
+                  {slide.desc}
+                </p>
+
+                {/* Specification Tags */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginBottom: "36px" }}>
+                  {slide.tags.map((tag, tIdx) => (
+                    <span 
+                      key={tIdx}
                       style={{
-                        padding: "14px 20px",
-                        borderBottom: "1px solid var(--card-border)",
-                        display: "flex",
-                        justifyContent: "space-between",
+                        fontSize: "0.82rem",
+                        color: "rgba(255, 255, 255, 0.85)",
+                        background: "rgba(18, 25, 41, 0.75)",
+                        backdropFilter: "blur(10px)",
+                        border: "1px solid rgba(255, 255, 255, 0.12)",
+                        padding: "6px 14px",
+                        borderRadius: "8px",
+                        display: "inline-flex",
                         alignItems: "center",
-                        background: "rgba(0, 0, 0, 0.25)"
+                        gap: "6px"
                       }}
                     >
-                      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                        <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "var(--primary)" }} />
-                        <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--text-heading)", letterSpacing: "1px" }}>
-                          KMI PRODUCT HIGHLIGHT
-                        </span>
-                      </div>
-                      <span style={{ fontSize: "0.75rem", color: "#d4af37", fontWeight: 600 }}>
-                        {slide.model}
-                      </span>
-                    </div>
-
-                    {/* Image Container with high quality presentation */}
-                    <div 
-                      style={{
-                        position: "relative",
-                        width: "100%",
-                        aspectRatio: "1 / 1",
-                        background: "radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, rgba(5,7,10,0.6) 100%)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        overflow: "hidden"
-                      }}
-                    >
-                      <img 
-                        src={slide.image}
-                        alt={`${slide.badge} - ${slide.model}`}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "contain",
-                          padding: "16px",
-                          display: "block",
-                          transition: "transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
-                          filter: "drop-shadow(0 15px 30px rgba(0,0,0,0.6))"
-                        }}
-                        className="banner-product-img"
-                      />
-
-                      {/* Brand Watermark Emblem */}
-                      <div 
-                        style={{
-                          position: "absolute",
-                          bottom: "16px",
-                          right: "16px",
-                          background: "rgba(9, 13, 22, 0.8)",
-                          backdropFilter: "blur(6px)",
-                          border: "1px solid rgba(255,255,255,0.1)",
-                          padding: "4px 10px",
-                          borderRadius: "6px",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "6px"
-                        }}
-                      >
-                        <Award size={14} style={{ color: "#d4af37" }} />
-                        <span style={{ fontSize: "0.7rem", fontWeight: 700, color: "#ffffff", letterSpacing: "1px" }}>
-                          100% ORIGINAL KMI
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Bottom Action Footer on card */}
-                    <div 
-                      style={{
-                        padding: "14px 20px",
-                        borderTop: "1px solid var(--card-border)",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        background: "rgba(0, 0, 0, 0.25)"
-                      }}
-                    >
-                      <span style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
-                        Architectural Hardware Series
-                      </span>
-                      <a 
-                        href={`https://wa.me/919927755449?text=${encodeURIComponent(slide.whatsappMsg)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          fontSize: "0.85rem",
-                          fontWeight: 600,
-                          color: "var(--primary)",
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "4px"
-                        }}
-                      >
-                        Request Quote →
-                      </a>
-                    </div>
-                  </div>
+                      <Check size={13} style={{ color: "var(--primary)" }} /> {tag}
+                    </span>
+                  ))}
                 </div>
 
+                {/* Buttons */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+                  <button 
+                    onClick={scrollToCategories} 
+                    className="btn btn-primary" 
+                    style={{ 
+                      fontSize: "1rem", 
+                      padding: "14px 32px",
+                      borderRadius: "9999px",
+                      boxShadow: "0 10px 28px rgba(0, 162, 232, 0.45)"
+                    }}
+                  >
+                    {slide.btnText} <ArrowRight size={17} />
+                  </button>
+                  
+                  <a 
+                    href={`https://wa.me/919927755449?text=${encodeURIComponent(slide.whatsappMsg)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-secondary" 
+                    style={{ 
+                      fontSize: "1rem", 
+                      padding: "14px 28px",
+                      borderRadius: "9999px",
+                      background: "rgba(18, 25, 41, 0.65)",
+                      backdropFilter: "blur(12px)",
+                      border: "1px solid rgba(255, 255, 255, 0.18)"
+                    }}
+                  >
+                    <MessageSquare size={17} /> WhatsApp Enquiry
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Right Section: Floating Watermark & Slide Counter */}
+        <div 
+          className="hero-floating-badge"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-end",
+            gap: "20px"
+          }}
+        >
+          {/* Active slide counter */}
+          <div 
+            style={{
+              background: "rgba(9, 13, 22, 0.7)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(255, 255, 255, 0.15)",
+              padding: "12px 24px",
+              borderRadius: "16px",
+              display: "flex",
+              alignItems: "baseline",
+              gap: "8px"
+            }}
+          >
+            <span style={{ fontSize: "1.8rem", fontWeight: 800, color: "var(--primary)", fontFamily: "var(--font-title)" }}>
+              0{current + 1}
+            </span>
+            <span style={{ fontSize: "1rem", color: "rgba(255, 255, 255, 0.4)", fontWeight: 600 }}>
+              / 0{slides.length}
+            </span>
+          </div>
+
+          {/* Genuine KMI Hardware Emblem */}
+          <div 
+            style={{
+              background: "rgba(9, 13, 22, 0.7)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(212, 175, 55, 0.3)",
+              padding: "12px 20px",
+              borderRadius: "16px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px"
+            }}
+          >
+            <Award size={18} style={{ color: "#d4af37" }} />
+            <div>
+              <div style={{ fontSize: "0.75rem", fontWeight: 800, color: "#ffffff", letterSpacing: "1px" }}>
+                100% ORIGINAL KMI
+              </div>
+              <div style={{ fontSize: "0.7rem", color: "rgba(255, 255, 255, 0.6)" }}>
+                Architectural Quality Standard
               </div>
             </div>
-          );
-        })}
+          </div>
+        </div>
       </div>
 
       {/* Navigation Arrows */}
@@ -501,22 +455,22 @@ export default function HeroSlider() {
           top: "50%",
           transform: "translateY(-50%)",
           zIndex: 20,
-          width: "50px",
-          height: "50px",
+          width: "52px",
+          height: "52px",
           borderRadius: "50%",
           background: "rgba(18, 25, 41, 0.75)",
-          backdropFilter: "blur(8px)",
-          border: "1px solid var(--card-border)",
-          color: "var(--text)",
+          backdropFilter: "blur(12px)",
+          border: "1px solid rgba(255, 255, 255, 0.15)",
+          color: "#ffffff",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           cursor: "pointer",
           transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-          boxShadow: "0 8px 20px rgba(0, 0, 0, 0.4)"
+          boxShadow: "0 8px 24px rgba(0, 0, 0, 0.5)"
         }}
       >
-        <ChevronLeft size={22} />
+        <ChevronLeft size={24} />
       </button>
 
       <button 
@@ -529,25 +483,25 @@ export default function HeroSlider() {
           top: "50%",
           transform: "translateY(-50%)",
           zIndex: 20,
-          width: "50px",
-          height: "50px",
+          width: "52px",
+          height: "52px",
           borderRadius: "50%",
           background: "rgba(18, 25, 41, 0.75)",
-          backdropFilter: "blur(8px)",
-          border: "1px solid var(--card-border)",
-          color: "var(--text)",
+          backdropFilter: "blur(12px)",
+          border: "1px solid rgba(255, 255, 255, 0.15)",
+          color: "#ffffff",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           cursor: "pointer",
           transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-          boxShadow: "0 8px 20px rgba(0, 0, 0, 0.4)"
+          boxShadow: "0 8px 24px rgba(0, 0, 0, 0.5)"
         }}
       >
-        <ChevronRight size={22} />
+        <ChevronRight size={24} />
       </button>
 
-      {/* Bottom Slide Indicator Pills */}
+      {/* Bottom Slide Indicators with Titles on Hover */}
       <div 
         style={{
           position: "absolute",
@@ -555,48 +509,60 @@ export default function HeroSlider() {
           left: "50%",
           transform: "translateX(-50%)",
           display: "flex",
+          alignItems: "center",
           gap: "10px",
           zIndex: 20,
-          background: "rgba(9, 13, 22, 0.6)",
-          backdropFilter: "blur(8px)",
-          padding: "8px 16px",
+          background: "rgba(9, 13, 22, 0.75)",
+          backdropFilter: "blur(12px)",
+          padding: "10px 20px",
           borderRadius: "9999px",
-          border: "1px solid var(--card-border)"
+          border: "1px solid rgba(255, 255, 255, 0.12)"
         }}
       >
-        {slides.map((s, idx) => (
-          <button
-            key={s.id}
-            onClick={() => goToSlide(idx)}
-            aria-label={`Go to slide ${idx + 1}`}
-            style={{
-              width: idx === current ? "32px" : "10px",
-              height: "10px",
-              borderRadius: "9999px",
-              background: idx === current ? "var(--primary)" : "rgba(255, 255, 255, 0.2)",
-              border: "none",
-              cursor: "pointer",
-              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-              boxShadow: idx === current ? "0 0 10px var(--primary)" : "none"
-            }}
-          />
-        ))}
+        {slides.map((s, idx) => {
+          const isCurrent = idx === current;
+          return (
+            <button
+              key={s.id}
+              onClick={() => goToSlide(idx)}
+              aria-label={`Go to slide ${idx + 1}: ${s.model}`}
+              style={{
+                width: isCurrent ? "36px" : "10px",
+                height: "8px",
+                borderRadius: "9999px",
+                background: isCurrent ? "var(--primary)" : "rgba(255, 255, 255, 0.25)",
+                border: "none",
+                cursor: "pointer",
+                transition: "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+                boxShadow: isCurrent ? "0 0 12px var(--primary)" : "none"
+              }}
+            />
+          );
+        })}
       </div>
 
       <style jsx global>{`
-        .product-banner-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 35px 75px -15px rgba(0, 0, 0, 0.6), 0 0 45px rgba(0, 162, 232, 0.2) !important;
-        }
-        .product-banner-card:hover .banner-product-img {
-          transform: scale(1.04);
+        @keyframes fadeInSlide {
+          from {
+            opacity: 0;
+            transform: translateY(24px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         .slider-nav-btn:hover {
           background: var(--primary) !important;
           color: #ffffff !important;
           border-color: var(--primary) !important;
-          transform: translateY(-50%) scale(1.08) !important;
-          box-shadow: 0 10px 25px rgba(0, 162, 232, 0.5) !important;
+          transform: translateY(-50%) scale(1.1) !important;
+          box-shadow: 0 10px 28px rgba(0, 162, 232, 0.6) !important;
+        }
+        @media (max-width: 900px) {
+          .hero-floating-badge {
+            display: none !important;
+          }
         }
       `}</style>
     </div>
