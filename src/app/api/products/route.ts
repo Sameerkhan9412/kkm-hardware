@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     }
 
     await connectToDatabase();
-    const { name, image, category } = await request.json();
+    const { name, image, category, description, features, gallery } = await request.json();
 
     if (!name || !category) {
       return NextResponse.json(
@@ -63,7 +63,30 @@ export async function POST(request: NextRequest) {
     }
 
     const imageUrl = await uploadToCloudinary(image || "", "products");
-    const newProduct = await Product.create({ name, image: imageUrl, category });
+
+    let processedGallery: any[] = [];
+    if (Array.isArray(gallery)) {
+      processedGallery = await Promise.all(
+        gallery.map(async (item: any) => {
+          const itemUrl = await uploadToCloudinary(item.url || item.image || "", "products");
+          return {
+            url: itemUrl,
+            title: item.title || "",
+            description: item.description || ""
+          };
+        })
+      );
+    }
+
+    const newProduct = await Product.create({
+      name,
+      image: imageUrl,
+      category,
+      description: description || "",
+      features: Array.isArray(features) ? features : [],
+      gallery: processedGallery,
+    });
+
     return NextResponse.json({ success: true, data: newProduct });
   } catch (error: any) {
     return NextResponse.json(
@@ -120,7 +143,7 @@ export async function PUT(request: NextRequest) {
     }
 
     await connectToDatabase();
-    const { id, name, image, category } = await request.json();
+    const { id, name, image, category, description, features, gallery } = await request.json();
 
     if (!id || !name || !category) {
       return NextResponse.json(
@@ -130,9 +153,34 @@ export async function PUT(request: NextRequest) {
     }
 
     const imageUrl = await uploadToCloudinary(image || "", "products");
+
+    let processedGallery: any[] = [];
+    if (Array.isArray(gallery)) {
+      processedGallery = await Promise.all(
+        gallery.map(async (item: any) => {
+          const itemUrl = await uploadToCloudinary(item.url || item.image || "", "products");
+          return {
+            url: itemUrl,
+            title: item.title || "",
+            description: item.description || ""
+          };
+        })
+      );
+    }
+
+    const updateData: any = {
+      name,
+      category,
+      image: imageUrl,
+    };
+
+    if (description !== undefined) updateData.description = description;
+    if (features !== undefined) updateData.features = Array.isArray(features) ? features : [];
+    if (gallery !== undefined) updateData.gallery = processedGallery;
+
     const updated = await Product.findByIdAndUpdate(
       id,
-      { name, image: imageUrl, category },
+      updateData,
       { new: true }
     ).populate("category");
 

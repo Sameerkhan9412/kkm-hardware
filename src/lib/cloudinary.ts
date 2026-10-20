@@ -41,7 +41,7 @@ export async function uploadToCloudinary(base64Image: string, folder: string = "
     });
     return uploadResponse.secure_url;
   } catch (error: any) {
-    console.error("Cloudinary upload failed:", error);
-    throw new Error(`Cloudinary upload failed: ${error.message}`);
+    console.warn("Cloudinary upload failed, falling back to base64:", error.message);
+    return base64Image;
   }
 }
