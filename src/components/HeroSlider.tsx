@@ -128,6 +128,9 @@ export default function HeroSlider() {
     }
   };
 
+  const currentSlide = slides[current];
+  const isFullProductSlide = currentSlide.id === 1 || currentSlide.id === 4;
+
   return (
     <div 
       className="hero-slider-container"
@@ -140,12 +143,17 @@ export default function HeroSlider() {
         overflow: "hidden",
         background: "var(--bg-darker)",
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "center",
+        paddingTop: "100px",
+        paddingBottom: "50px",
+        boxSizing: "border-box"
       }}
     >
       {/* Background Slides with Full-Bleed Product Images */}
       {slides.map((slide, idx) => {
         const isActive = idx === current;
+        const isFullProduct = slide.id === 1 || slide.id === 4;
         return (
           <div
             key={slide.id}
@@ -162,7 +170,7 @@ export default function HeroSlider() {
               overflow: "hidden"
             }}
           >
-            {/* Full-Bleed Product Background Image with gentle Ken-Burns zoom */}
+            {/* Background Image: Ambient soft glow for full-product slides, crisp full-bleed for others */}
             <img 
               src={slide.image} 
               alt={`${slide.badge} - ${slide.model}`}
@@ -175,7 +183,9 @@ export default function HeroSlider() {
                 objectPosition: "center 45%",
                 transform: isActive ? "scale(1.05)" : "scale(1.15)",
                 transition: "transform 7s cubic-bezier(0.16, 1, 0.3, 1)",
-                filter: "brightness(0.92) contrast(1.08)"
+                filter: isFullProduct
+                  ? "blur(32px) brightness(0.28) saturate(1.2)"
+                  : "brightness(0.92) contrast(1.08)"
               }}
             />
 
@@ -184,7 +194,9 @@ export default function HeroSlider() {
               style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(to right, rgba(9, 13, 22, 0.95) 0%, rgba(9, 13, 22, 0.85) 45%, rgba(9, 13, 22, 0.5) 75%, rgba(9, 13, 22, 0.25) 100%)",
+                background: isFullProduct
+                  ? "linear-gradient(to right, rgba(9, 13, 22, 0.98) 0%, rgba(9, 13, 22, 0.92) 42%, rgba(9, 13, 22, 0.5) 75%, rgba(9, 13, 22, 0.2) 100%)"
+                  : "linear-gradient(to right, rgba(9, 13, 22, 0.95) 0%, rgba(9, 13, 22, 0.85) 45%, rgba(9, 13, 22, 0.5) 75%, rgba(9, 13, 22, 0.25) 100%)",
                 zIndex: 2
               }}
             />
@@ -232,13 +244,14 @@ export default function HeroSlider() {
 
       {/* Foreground Content: Title, Badges, Specs, Buttons */}
       <div 
+        className="hero-content-wrapper"
         style={{
           position: "relative",
           zIndex: 10,
           width: "100%",
-          maxWidth: "1280px",
+          maxWidth: "1360px",
           margin: "0 auto",
-          padding: "140px 24px 100px 24px",
+          padding: "10px 24px 20px 24px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -246,7 +259,7 @@ export default function HeroSlider() {
         }}
       >
         {/* Left Section: Text Content */}
-        <div style={{ maxWidth: "680px", width: "100%" }}>
+        <div style={{ maxWidth: "640px", width: "100%", flex: "1 1 540px" }}>
           {slides.map((slide, idx) => {
             const isActive = idx === current;
             if (!isActive) return null;
@@ -300,9 +313,9 @@ export default function HeroSlider() {
                 {/* Headline */}
                 <h1 
                   style={{
-                    fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
-                    lineHeight: 1.1,
-                    marginBottom: "20px",
+                    fontSize: "clamp(2rem, 3.6vw, 3.4rem)",
+                    lineHeight: 1.14,
+                    marginBottom: "16px",
                     color: "#ffffff",
                     fontFamily: "var(--font-title)",
                     fontWeight: 800,
@@ -316,11 +329,11 @@ export default function HeroSlider() {
                 {/* Description */}
                 <p 
                   style={{
-                    fontSize: "clamp(1.05rem, 1.4vw, 1.22rem)",
+                    fontSize: "clamp(0.95rem, 1.15vw, 1.1rem)",
                     color: "rgba(255, 255, 255, 0.88)",
-                    lineHeight: "1.7",
-                    marginBottom: "28px",
-                    maxWidth: "600px",
+                    lineHeight: "1.65",
+                    marginBottom: "20px",
+                    maxWidth: "580px",
                     textShadow: "0 2px 10px rgba(0, 0, 0, 0.5)"
                   }}
                 >
@@ -328,17 +341,17 @@ export default function HeroSlider() {
                 </p>
 
                 {/* Specification Tags */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginBottom: "36px" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "24px" }}>
                   {slide.tags.map((tag, tIdx) => (
                     <span 
                       key={tIdx}
                       style={{
-                        fontSize: "0.82rem",
+                        fontSize: "0.8rem",
                         color: "rgba(255, 255, 255, 0.85)",
                         background: "rgba(18, 25, 41, 0.75)",
                         backdropFilter: "blur(10px)",
                         border: "1px solid rgba(255, 255, 255, 0.12)",
-                        padding: "6px 14px",
+                        padding: "5px 12px",
                         borderRadius: "8px",
                         display: "inline-flex",
                         alignItems: "center",
@@ -387,60 +400,150 @@ export default function HeroSlider() {
           })}
         </div>
 
-        {/* Right Section: Floating Watermark & Slide Counter */}
+        {/* Right Section: Counter, Badges & Full Product Showcase for Slides 1 & 4 */}
         <div 
-          className="hero-floating-badge"
+          className="hero-right-area"
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-end",
-            gap: "20px"
+            justifyContent: "center",
+            gap: "18px",
+            flex: isFullProductSlide ? "1 1 500px" : "0 0 auto",
+            maxWidth: isFullProductSlide ? "520px" : "360px",
+            width: "100%"
           }}
         >
-          {/* Active slide counter */}
+          {/* Top Info Bar: Counter & 100% Original KMI Emblem */}
           <div 
-            style={{
-              background: "rgba(9, 13, 22, 0.7)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255, 255, 255, 0.15)",
-              padding: "12px 24px",
-              borderRadius: "16px",
-              display: "flex",
-              alignItems: "baseline",
-              gap: "8px"
+            style={{ 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "12px", 
+              width: "100%", 
+              justifyContent: "flex-end",
+              flexWrap: "wrap"
             }}
           >
-            <span style={{ fontSize: "1.8rem", fontWeight: 800, color: "var(--primary)", fontFamily: "var(--font-title)" }}>
-              0{current + 1}
-            </span>
-            <span style={{ fontSize: "1rem", color: "rgba(255, 255, 255, 0.4)", fontWeight: 600 }}>
-              / 0{slides.length}
-            </span>
-          </div>
+            {/* Active slide counter */}
+            <div 
+              style={{
+                background: "rgba(9, 13, 22, 0.75)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                padding: "10px 20px",
+                borderRadius: "14px",
+                display: "flex",
+                alignItems: "baseline",
+                gap: "6px"
+              }}
+            >
+              <span style={{ fontSize: "1.6rem", fontWeight: 800, color: "var(--primary)", fontFamily: "var(--font-title)" }}>
+                0{current + 1}
+              </span>
+              <span style={{ fontSize: "0.95rem", color: "rgba(255, 255, 255, 0.4)", fontWeight: 600 }}>
+                / 0{slides.length}
+              </span>
+            </div>
 
-          {/* Genuine KMI Hardware Emblem */}
-          <div 
-            style={{
-              background: "rgba(9, 13, 22, 0.7)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(212, 175, 55, 0.3)",
-              padding: "12px 20px",
-              borderRadius: "16px",
-              display: "flex",
-              alignItems: "center",
-              gap: "10px"
-            }}
-          >
-            <Award size={18} style={{ color: "#d4af37" }} />
-            <div>
-              <div style={{ fontSize: "0.75rem", fontWeight: 800, color: "#ffffff", letterSpacing: "1px" }}>
-                100% ORIGINAL KMI
-              </div>
-              <div style={{ fontSize: "0.7rem", color: "rgba(255, 255, 255, 0.6)" }}>
-                Architectural Quality Standard
+            {/* Genuine KMI Hardware Emblem */}
+            <div 
+              style={{
+                background: "rgba(9, 13, 22, 0.75)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(212, 175, 55, 0.35)",
+                padding: "10px 18px",
+                borderRadius: "14px",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px"
+              }}
+            >
+              <Award size={18} style={{ color: "#d4af37" }} />
+              <div>
+                <div style={{ fontSize: "0.72rem", fontWeight: 800, color: "#ffffff", letterSpacing: "1px" }}>
+                  100% ORIGINAL KMI
+                </div>
+                <div style={{ fontSize: "0.68rem", color: "rgba(255, 255, 255, 0.6)" }}>
+                  Architectural Quality Standard
+                </div>
               </div>
             </div>
           </div>
+
+          {/* For Slide 1 and Slide 4: Full Uncropped Product Showcase Card */}
+          {isFullProductSlide && (
+            <div 
+              key={`product-showcase-${currentSlide.id}`}
+              className="hero-product-showcase-card"
+              style={{
+                position: "relative",
+                width: "100%",
+                borderRadius: "22px",
+                overflow: "hidden",
+                background: "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(18, 25, 41, 0.88) 100%)",
+                backdropFilter: "blur(20px)",
+                border: `1.5px solid ${currentSlide.accentColor === '#00A2E8' ? 'rgba(0, 162, 232, 0.4)' : 'rgba(212, 175, 55, 0.4)'}`,
+                boxShadow: "0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(0, 0, 0, 0.5)",
+                padding: "12px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                animation: "fadeInSlide 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards"
+              }}
+            >
+              {/* Product Image - Completely Full & Uncropped */}
+              <div 
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  background: "rgba(0, 0, 0, 0.25)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <img 
+                  src={currentSlide.image} 
+                  alt={`${currentSlide.badge} - ${currentSlide.model}`}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    maxHeight: "min(46vh, 410px)",
+                    objectFit: "contain",
+                    display: "block",
+                    borderRadius: "14px",
+                    filter: "contrast(1.05) brightness(1.02)",
+                    transition: "transform 0.4s ease"
+                  }}
+                />
+              </div>
+
+              {/* Showcase Footer Label */}
+              <div 
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  padding: "10px 8px 4px 8px",
+                  fontSize: "0.78rem",
+                  color: "rgba(255, 255, 255, 0.8)",
+                  fontWeight: 600
+                }}
+              >
+                <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                  <Sparkles size={13} style={{ color: currentSlide.accentColor }} />
+                  {currentSlide.id === 1 ? "Complete 5-Finish Mortice Collection" : "Complete 5-Piece Greek Key & Capsule Trio"}
+                </span>
+                <span style={{ color: "#d4af37", fontSize: "0.75rem", letterSpacing: "0.5px" }}>
+                  100% Solid Heavy Forged
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -559,9 +662,25 @@ export default function HeroSlider() {
           transform: translateY(-50%) scale(1.1) !important;
           box-shadow: 0 10px 28px rgba(0, 162, 232, 0.6) !important;
         }
-        @media (max-width: 900px) {
-          .hero-floating-badge {
-            display: none !important;
+        @media (max-width: 960px) {
+          .hero-content-wrapper {
+            flex-direction: column !important;
+            padding-top: 120px !important;
+            gap: 32px !important;
+            align-items: flex-start !important;
+          }
+          .hero-right-area {
+            align-items: center !important;
+            max-width: 100% !important;
+          }
+          .hero-product-showcase-card {
+            max-width: 440px !important;
+            margin: 0 auto !important;
+          }
+        }
+        @media (max-width: 600px) {
+          .hero-product-showcase-card {
+            max-width: 100% !important;
           }
         }
       `}</style>

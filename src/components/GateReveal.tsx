@@ -64,9 +64,10 @@ export default function GateReveal() {
       cooldownRef.current = true;
       setIsAnimating(true);
       setStage("entered");
-      // Reveal header section now!
+      // Reveal header section now and reset scroll to top of hero
       if (typeof window !== "undefined") {
         window.dispatchEvent(new CustomEvent("kmi-show-header"));
+        window.scrollTo(0, 0);
       }
       setTimeout(() => {
         cooldownRef.current = false;
@@ -544,81 +545,6 @@ export default function GateReveal() {
           />
         </div>
 
-        {/* ============================================================ */}
-        {/* LOGO ON ENTRY GATE (Displayed on closed white doors) */}
-        {/* ============================================================ */}
-        <div
-          onClick={() => {
-            if (stage === "closed") advanceStage();
-          }}
-          style={{
-            position: "fixed",
-            top: "36%",
-            left: "50%",
-            transform: isOpen ? "translate(-50%, -50%) scale(0.85)" : "translate(-50%, -50%) scale(1)",
-            opacity: isOpen ? 0 : 1,
-            pointerEvents: isOpen ? "none" : "auto",
-            transition: "opacity 0.4s ease, transform 0.4s ease",
-            zIndex: 25,
-            cursor: "pointer",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          {/* Luxury Crest Plaque with KMI Logo */}
-          <div
-            style={{
-              background: "rgba(255, 255, 255, 0.96)",
-              backdropFilter: "blur(14px)",
-              padding: "20px 32px 16px 32px",
-              borderRadius: "22px",
-              border: "2px solid #d4af37",
-              boxShadow: "0 20px 45px rgba(0, 0, 0, 0.22), 0 0 35px rgba(212, 175, 55, 0.25)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "8px",
-              minWidth: "220px",
-            }}
-          >
-            {/* Crisp Official Logo */}
-            <img
-              src="/kmi-logo.png"
-              alt="KMI Architectural Hardware"
-              style={{
-                width: "min(200px, 50vw)",
-                height: "auto",
-                objectFit: "contain",
-                display: "block",
-              }}
-            />
-
-            {/* Golden Divider Line */}
-            <div
-              style={{
-                width: "100%",
-                height: "1px",
-                background: "linear-gradient(to right, transparent, #d4af37, transparent)",
-                margin: "4px 0",
-              }}
-            />
-
-            {/* Architectural Subtitle */}
-            <div
-              style={{
-                fontSize: "0.72rem",
-                letterSpacing: "2.5px",
-                textTransform: "uppercase",
-                color: "#8b6b23",
-                fontWeight: 700,
-                fontFamily: "var(--font-title)",
-              }}
-            >
-              ARCHITECTURAL HARDWARE • ESTD. 2011
-            </div>
-          </div>
-        </div>
 
         {/* Floating Scroll Indicator on closed gate */}
         <div
